@@ -1,10 +1,10 @@
-@import org.example.ToDoItem
+@import org.example.ToDo
 @import org.example.Utils
 @import java.util.List
 
 
-@param List<ToDoItem> toDoItems
-@param int countOfActiveToDos
+@param List<ToDo> toDos
+@param String countOfActiveToDosDisplay
 @param String appliedFilter
 
 
@@ -34,22 +34,22 @@
     </header>
     <main>
         <ul class="todo-list">
-            @for(int i = 0; i < toDoItems.size(); i++)
-                @template.singleItem(index = i, toDo  = toDoItems.get(i))
+            @for(var toDo: toDos)
+                @template.singleItem(toDo = toDo)
             @endfor
         </ul>
     </main>
-    <footer class="footer" style="display: block;"><span class="todo-count"><strong>${countOfActiveToDos}</strong> item left</span>
+    <footer class="footer"><span class="todo-count"><strong>${countOfActiveToDosDisplay}</strong></span>
 
 
         <ul class="filters">
             @for(var filter: List.of("All", "Active", "Completed"))
-                <li><a href="/todos?f=${filter}"
+                <li><a href="/todos?filter=${filter}"
                        class="${Utils.computeLinkClass(appliedFilter, filter)}">${filter}</a></li>
             @endfor
         </ul>
 
-        <button class="clear-completed" style="display: none;"></button>
+        <button class="clear-completed" hx-delete="/todos/completed" hx-target="body" >Clear completed</button>
     </footer>
 </section>
 

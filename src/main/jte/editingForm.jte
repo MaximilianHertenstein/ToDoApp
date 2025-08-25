@@ -1,11 +1,12 @@
-@param int index
-@param String text
+@import org.example.ToDo
+
+@param ToDo toDo
 
 
 
 <li class="editing">
-    <input class="edit new-todo" autofocus="${true}" hx-post="todos/${index}/edit" hx-target="closest li"
-           type="text" value="${text}"
+    <input class="edit new-todo" autofocus="${true}" hx-post="todos/${toDo.id()}/edit" hx-target="closest li"
+           type="text" value="${toDo.text()}"
            name="updated_text_of_new_todo" hx-trigger="blur, keyup[keyCode==13]">
 </li>
 

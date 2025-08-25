@@ -7,16 +7,14 @@ import io.javalin.http.HttpStatus;
 public class ServerController {
     Model model = new Model();
     ServerView view = new ServerView();
+    String currentFilter = "All";
 
 
     public void renderMain(Context ctx) {
-
-        String appliedFilterOrNull = ctx.queryParam("f");
-        String appliedFilter = Utils.nullToAll(appliedFilterOrNull);
-        var toDos= model.getItemsWithStatus(appliedFilter);
-
-
-        view.renderMain(ctx,toDos, model.countActiveToDoItems(),appliedFilter);
+        String newFilterOrNull = ctx.queryParam("filter");
+        currentFilter = Utils.nullToOldElseOld(newFilterOrNull,currentFilter);
+        var toDos= model.getItemsWithStatus(currentFilter);
+        view.renderMain(ctx,toDos, model.showCountOfActiveToDoItems(),currentFilter);
     }
 
     public void addToDo(Context ctx){
@@ -26,27 +24,32 @@ public class ServerController {
     }
 
     public void deleteToDo(Context ctx){
-        var indexOfToDo =   ctx.pathParam("i");
-        model.delete(Integer.parseInt(indexOfToDo));
+        var idOfToDo =   ctx.pathParam("id");
+        model.delete(Integer.parseInt(idOfToDo),currentFilter);
         ctx.redirect("/todos", HttpStatus.forStatus(303));
     }
 
     public void toggleStatus(Context ctx) {
-        var indexOfToDo =   ctx.pathParam("i");
-        model.toggle(Integer.parseInt(indexOfToDo));
+        var idOfToDo =   ctx.pathParam("id");
+        model.toggle(Integer.parseInt(idOfToDo));
         ctx.redirect("/todos", HttpStatus.forStatus(303));
     }
 
-    
+
     public void updateToDo(Context ctx) {
-        var indexOfToDo =   Integer.parseInt(ctx.pathParam("i"));
+        var idOfToDo =   Integer.parseInt(ctx.pathParam("id"));
         var text_of_new_todo =   ctx.formParam("updated_text_of_new_todo");
-        model.set(indexOfToDo,text_of_new_todo);
-        view.renderSingleItem(ctx,indexOfToDo, model.getToDoItems().get(indexOfToDo));
+        model.set(idOfToDo,text_of_new_todo);
+        view.renderSingleItem(ctx,model.getToDoItem(idOfToDo));
     }
 
     public void editToDo(Context ctx) {
-        var indexOfToDo =   Integer.parseInt(ctx.pathParam("i"));
-        view.renderEditForm(ctx,indexOfToDo, model.getToDoItems().get(indexOfToDo).text());
+        var idOfToDo =   Integer.parseInt(ctx.pathParam("id"));
+        view.renderEditForm(ctx, model.getToDoItem(idOfToDo));
+    }
+
+    public void deleteCompletedToDos(Context ctx) {
+        model.removeFinishedToDoItems();
+        ctx.redirect("/todos", HttpStatus.forStatus(303));
     }
 }

@@ -9,18 +9,18 @@ public class ServerView {
 
 
 
-    public void renderMain(Context ctx, List<ToDoItem> toDoItems, int countOfActiveToDos, String appliedFilter) {
-        var map = Map.of("toDoItems", toDoItems, "countOfActiveToDos", countOfActiveToDos, "appliedFilter", appliedFilter);
+    public void renderMain(Context ctx, List<ToDo> toDos, String countOfActiveToDosDisplay, String appliedFilter) {
+        var map = Map.of("toDos", toDos, "countOfActiveToDosDisplay", countOfActiveToDosDisplay, "appliedFilter", appliedFilter);
         ctx.render("mainPage.jte", map);
     }
 
 
-    public void renderEditForm(Context ctx, int indexOfToDo, String text) {
-        ctx.render("editingForm.jte", Map.of("index", indexOfToDo, "text", text));
+    public void renderEditForm(Context ctx, ToDo toDo) {
+        ctx.render("editingForm.jte", Map.of("toDo", toDo));
     }
 
 
-    public void renderSingleItem(Context ctx, int indexOfToDo, ToDoItem toDoItem) {
-        ctx.render("singleItem.jte", Map.of("index", indexOfToDo, "toDo", toDoItem));
+    public void renderSingleItem(Context ctx, ToDo toDo) {
+        ctx.render("singleItem.jte", Map.of("toDo", toDo));
     }
 }

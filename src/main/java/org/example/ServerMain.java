@@ -10,12 +10,11 @@ void main(){
 
 
     app.post("/todos/new", serverController::addToDo);
-    app.post("/todos/{i}/toggleStatus",serverController::toggleStatus);
-    app.delete("/todos/{i}",serverController::deleteToDo);
-
-
-    app.get("/todos/{i}/edit",serverController::editToDo);
-    app.post("/todos/{i}/edit",serverController::updateToDo);
+    app.post("/todos/{id}/toggleStatus",serverController::toggleStatus);
+    app.delete("/todos/completed",serverController::deleteCompletedToDos);
+    app.delete("/todos/{id}",serverController::deleteToDo);
+    app.get("/todos/{id}/edit",serverController::editToDo);
+    app.post("/todos/{id}/edit",serverController::updateToDo);
     app.start();
 }
 

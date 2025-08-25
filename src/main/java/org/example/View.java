@@ -17,35 +17,35 @@ public record View() {
         };
     }
 
-    private String showToDo(ToDoItem toDoItem) {
+    private String showToDo(ToDo toDo) {
         var done = "❌";
-        if (toDoItem.completed()) {
+        if (toDo.completed()) {
             done = "✓";
         }
-        return done + " " + toDoItem.text();
+        return done + " " + toDo.text();
     }
 
-    private void printToDos(List<ToDoItem> toDoItems) {
-        for (var toDoItem : toDoItems) {
+    private void printToDos(List<ToDo> toDos) {
+        for (var toDoItem : toDos) {
             println(showToDo(toDoItem));
         }
     }
 
-    private List<ToDoItem> numberToItems(String choice, Model model) {
-        return switch (choice) {
-            case "1" -> model.getToDoItems();
-            case "2" -> model.getActiveToDoItems();
-            case "3" -> model.getFinishedToDoItems();
-            default -> throw new IllegalArgumentException("Only the numbers from 1 to 3 are allowed here!");
-        };
-    }
+//    private List<ToDoItem> numberToItems(String choice, Model model) {
+//        return switch (choice) {
+//            case "1" -> model.getToDoItems();
+//            case "2" -> model.getActiveToDoItems();
+//            case "3" -> model.getFinishedToDoItems();
+//            default -> throw new IllegalArgumentException("Only the numbers from 1 to 3 are allowed here!");
+//        };
+//    }
 
 
     public void viewChoiceToToDoList(String choice, Model model) {
         if (!List.of("1", "2", "3").contains(choice)) {
             println("Es gibt nur die Optionen 1 - 3!");
         }
-        printToDos(numberToItems(choice, model));
+       // printToDos(numberToItems(choice, model));
     }
 
 
