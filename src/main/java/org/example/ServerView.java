@@ -9,7 +9,7 @@ public class ServerView {
 
 
 
-    public void renderMain(Context ctx, List<ToDo> toDos, String countOfActiveToDosDisplay, String appliedFilter) {
+    public void renderApp(Context ctx, List<ToDo> toDos, String countOfActiveToDosDisplay, String appliedFilter) {
         var map = Map.of("toDos", toDos, "countOfActiveToDosDisplay", countOfActiveToDosDisplay, "appliedFilter", appliedFilter);
         ctx.render("mainPage.jte", map);
     }

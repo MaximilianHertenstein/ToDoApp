@@ -6,7 +6,10 @@ void main(){
     var app = Javalin.create(Utils::configureJavalinApp);
     var serverController = new ServerController();
 
-    app.get("/todos",serverController::renderMain);
+
+
+    app.get("/todos",serverController::renderApp);
+    app.get("/todos",serverController::renderApp);
 
 
     app.post("/todos/new", serverController::addToDo);

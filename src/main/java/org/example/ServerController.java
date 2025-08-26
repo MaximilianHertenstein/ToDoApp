@@ -10,11 +10,13 @@ public class ServerController {
     String currentFilter = "All";
 
 
-    public void renderMain(Context ctx) {
+
+
+    public void renderApp(Context ctx) {
         String newFilterOrNull = ctx.queryParam("filter");
         currentFilter = Utils.nullToOldElseOld(newFilterOrNull,currentFilter);
         var toDos= model.getItemsWithStatus(currentFilter);
-        view.renderMain(ctx,toDos, model.showCountOfActiveToDoItems(),currentFilter);
+        view.renderApp(ctx,toDos, model.showCountOfActiveToDoItems(),currentFilter);
     }
 
     public void addToDo(Context ctx){
