@@ -98,9 +98,9 @@ public class Model {
         toDos.set(index, toDos.get(index).updateText(text));
     }
 
-    public void delete(int index, String filter) {
-        var toDo = getItemsWithStatus(filter).get(index);
-        toDos.remove(toDo);
+    public void delete(int id) {
+        int index = idToIndex(id);
+        toDos.remove(index);
     }
 
     public String showCountOfActiveToDoItems() {

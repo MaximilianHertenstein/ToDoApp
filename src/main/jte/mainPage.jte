@@ -1,5 +1,4 @@
 @import org.example.ToDo
-@import org.example.Utils
 @import java.util.List
 
 
@@ -18,10 +17,12 @@
     <title>ToDo-App</title>
 
 </head>
+
 <body>
 
 
-@template.app(toDos = toDos, countOfActiveToDosDisplay = countOfActiveToDosDisplay, appliedFilter = appliedFilter)
 
+@template.app(toDos = toDos, countOfActiveToDosDisplay = countOfActiveToDosDisplay, appliedFilter = appliedFilter)
 </body>
+
 </html>

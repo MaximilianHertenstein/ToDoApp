@@ -23,11 +23,11 @@ public final class JtesingleItemGenerated {
 		jteOutput.setContext("input", "hx-post");
 		jteOutput.writeUserContent(toDo.id());
 		jteOutput.setContext("input", null);
-		jteOutput.writeContent("/toggleStatus\"\n           hx-target=\"body\" hx-trigger=\"click\">\n    <label hx-get=\"/todos/");
+		jteOutput.writeContent("/toggleStatus\"\n           hx-target=\"closest li\" hx-trigger=\"click\" hx-swap=\"outerHTML\">\n    <label hx-get=\"/todos/");
 		jteOutput.setContext("label", "hx-get");
 		jteOutput.writeUserContent(toDo.id());
 		jteOutput.setContext("label", null);
-		jteOutput.writeContent("/edit\" hx-target=\"closest li\"> ");
+		jteOutput.writeContent("/edit\" hx-target=\"closest li\" hx-swap=\"outerHTML\"> ");
 		jteOutput.setContext("label", null);
 		jteOutput.writeUserContent(toDo.text());
 		jteOutput.writeContent("</label>\n    <button class=\"destroy\" hx-delete=\"todos/");

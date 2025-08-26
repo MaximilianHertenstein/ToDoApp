@@ -11,7 +11,13 @@ public class ServerView {
 
     public void renderApp(Context ctx, List<ToDo> toDos, String countOfActiveToDosDisplay, String appliedFilter) {
         var map = Map.of("toDos", toDos, "countOfActiveToDosDisplay", countOfActiveToDosDisplay, "appliedFilter", appliedFilter);
-        ctx.render("mainPage.jte", map);
+        var templateName = "mainPage.jte";
+        if (ctx.header("HX-Request") != null) {
+            templateName = "app.jte";
+        }
+
+        ctx.render(templateName, map);
+
     }
 
 
@@ -20,7 +26,8 @@ public class ServerView {
     }
 
 
-    public void renderSingleItem(Context ctx, ToDo toDo) {
+    public void renderToDo(Context ctx, ToDo toDo) {
         ctx.render("singleItem.jte", Map.of("toDo", toDo));
     }
+
 }
