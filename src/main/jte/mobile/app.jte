@@ -8,31 +8,56 @@
 @param String appliedFilter
 
 
-<section class="todoapp" id="app">
-    <header class="header">
-        <h1>todos</h1>
+<body>
+    <view id="app" style="todoapp" >
+        <view style="header">
+            <text style="h1">todos</text>
 
-        <input hx-post="/todos/new" hx-target="body" hx-trigger="keyup[keyCode==13]" type="text" class="new-todo" placeholder="What needs to be done?" name="text_of_new_todo"
-               autofocus="${true}">
-    </header>
+            <input
+                    name="text_of_new_todo"
+                    placeholder="What needs to be done?"
+                    autofocus="true"
+                    action="/todos/new"
+                    trigger="onSubmit"
+                    target="replaceBody"
+            />
+        </view>
 
-    <main>
-        <ul class="todo-list">
-            @for(var toDo: toDos)
-                @template.web.singleItem(toDo = toDo)
-            @endfor
-        </ul>
-    </main>
-    <footer class="footer"><span class="todo-count"><strong>${countOfActiveToDosDisplay}</strong></span>
+        <view style="main">
+            <list style="todo-list">
+                @for(var toDo: toDos)
+                    @template.mobile.singleItem(toDo = toDo)
+                @endfor
+            </list>
+        </view>
 
+        <view style="footer">
+            <text style="todo-count">
+                <text style="strong">${countOfActiveToDosDisplay}</text>
+            </text>
 
-        <ul class="filters">
-            @for(var filter: List.of("All", "Active", "Completed"))
-                <li><a hx-post="/todos/${filter}" hx-target="body"
-                       class="${Utils.computeLinkClass(appliedFilter, filter)}">${filter}</a></li>
-            @endfor
-        </ul>
+            <list style="filters">
+                @for(var filter: List.of("All", "Active", "Completed"))
+                    <view>
+                        <link
+                                action="/todos/${filter}"
+                                target="replaceBody"
+                                style="${Utils.computeLinkClass(appliedFilter, filter)}"
+                        >
+                        <text>${filter}</text>
+                        </link>
+                    </view>
+                @endfor
+            </list>
 
-        <button class="clear-completed" hx-delete="/todos/completed" hx-target="body" >Clear completed</button>
-    </footer>
-    </section>
+            <button
+                    style="clear-completed"
+                    action="/todos/completed"
+                    method="delete"
+                    target="replaceBody"
+            >
+                <text>Clear completed</text>
+            </button>
+        </view>
+    </view>
+</body>

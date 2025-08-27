@@ -8,47 +8,45 @@ public class TerminalController {
     View view = new View();
 
 
-//    private void updateItem(String secondInput) {
-//        var index = Integer.parseInt(secondInput);
-//        if (index >= model.getToDoItems().size() || index < 0) {
-//            println("Es gibt kein ToDo mit diesem Index!");
-//            return;
-//        }
-//        println("Was möchtest du ändern? \n 1 Text aktualisieren \n 2 Status ändern \n 3 Item löschen");
-//
-//        var updateOperation = readln();
-//        switch (updateOperation) {
-//            case "1" -> {
-//                println("Gib den neuen Text des ToDos ein!");
-//                var newText = readln();
-//                model.set(index, newText);
-//            }
-//            case "2" -> model.toggle(index);
-//            //case "3" ->  ; //model.delete(index);
-//            default -> println("Es gibt nur die Optionen 1 - 3");
-//        }
-//    }
-
-    private void maybeRemoveFinishedToDos(String secondInput) {
-        if (secondInput.equals("y")) {
-            model.removeFinishedToDoItems();
+    private void updateItem() {
+        var id = view.askUntilInputIsId(model.getItemsWithStatus("All"));
+        println("Was möchtest du ändern? \n 1 Text aktualisieren \n 2 Status ändern \n 3 Item löschen");
+        var updateOperation = view.askUntilInputIsSmallerOrEqual(3);
+        switch (updateOperation) {
+            case 1 -> {
+                println("Gib den neuen Text des ToDos ein!");
+                var newText = readln();
+                model.set(id, newText);
+            }
+            case 2 -> model.toggle(id);
+            case 3 ->  model.delete(id);
         }
     }
 
+
+
     public void runApp() {
-        var firstChoice = "";
-        while (!firstChoice.equals("q")) {
-            println("Was willst du tun? \n 1 ToDo hinzufügen \n 2 ToDo ändern \n 3 Alle abgeschlossenen ToDos löschen \n 4 ToDos anzeigen");
-            firstChoice = readln();
-            println(view.choiceToResponse(firstChoice));
-            var secondInput = readln();
-            switch (firstChoice) {
-                case "1" -> model.add(secondInput);
-               // case "2" -> updateItem(secondInput);
-                case "3" -> maybeRemoveFinishedToDos(secondInput);
-                case "4" -> view.viewChoiceToToDoList(secondInput, model);
-                default -> println("Wähle eine der Optionen 1 - 4");
+        var choice = -1;
+        var selectedFilter = "All";
+        while (!(choice == 0)) {
+            view.printToDos(model.getItemsWithStatus(selectedFilter));
+            println("Was willst du tun? \n 1 ToDo hinzufügen \n 2 ToDo ändern \n 3 Alle abgeschlossenen ToDos löschen \n 4 Filter der ToDos ändern");
+            choice = view.askUntilInputIsSmallerOrEqual(4);
+            switch (choice) {
+                case 1 -> {
+                    println("Gib den Text des neuen Items ein!");
+                    var textOfNewToDo = readln();
+                    model.add(textOfNewToDo);
+                }
+                case 2 -> updateItem();
+                case 3 -> model.removeFinishedToDoItems();
+                case 4 -> {
+                    println("Welche ToDos willst du anzeigen \n 1 alle  \n 2 nur aktive \n 3 nur abgeschlossene");
+                    selectedFilter =  view.numberToFilter(view.askUntilInputIsSmallerOrEqual(3));
+                }
             }
+            println("\n");
         }
     }
 }
+

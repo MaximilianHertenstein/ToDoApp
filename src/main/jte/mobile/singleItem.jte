@@ -2,9 +2,31 @@
 
 @param ToDo toDo
 
-<li class="${org.example.Utils.statusToCompleted(toDo.completed())}">
-    <input class="toggle" type="checkbox" checked="${toDo.completed()}" hx-post="todos/${toDo.id()}/toggleStatus"
-           hx-target="closest li" hx-trigger="click" hx-swap="outerHTML">
-    <label hx-get="/todos/${toDo.id()}/edit" hx-target="closest li" hx-swap="outerHTML"> ${toDo.text()}</label>
-    <button class="destroy" hx-delete="todos/${toDo.id()}" hx-target="body"></button>
-</li>
+<view style="${org.example.Utils.statusToCompleted(toDo.completed())}">
+    <!-- Toggle checkbox -->
+    <switch
+            style="toggle"
+            value="${toDo.completed()}"
+            action="/todos/${toDo.id()}/toggleStatus"
+            target="replaceSelf"
+            trigger="onChange"
+    />
+
+    <!-- Label: edit trigger -->
+    <link
+            action="/todos/${toDo.id()}/edit"
+            target="replaceSelf"
+    >
+    <text>${toDo.text()}</text>
+    </link>
+
+    <!-- Destroy button -->
+    <button
+            style="destroy"
+            action="/todos/${toDo.id()}"
+            method="delete"
+            target="replaceBody"
+    >
+        <text>×</text>
+    </button>
+</view>

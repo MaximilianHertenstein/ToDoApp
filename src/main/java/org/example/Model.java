@@ -1,14 +1,7 @@
 package org.example;
 
-
-
 import java.util.ArrayList;
 import java.util.List;
-
-
-
-
-
 
 public class Model {
     private ArrayList<ToDo> toDos;
@@ -31,9 +24,9 @@ public class Model {
         return acc;
     }
 
-    private int nextId(){
+    private int nextId() {
         if (toDos.size() == 0) {
-            return 0;
+            return 1;
         }
         int max = toDos.get(0).id();
         for (int i = 1; i < toDos.size(); i++) {
@@ -44,30 +37,21 @@ public class Model {
         return max + 1;
     }
 
-    private int idToIndex(int id){
-        for (int i = 0; i< toDos.size(); i++){
-            if (toDos.get(i).id() == id){
+    private int idToIndex(int id) {
+        for (int i = 0; i < toDos.size(); i++) {
+            if (toDos.get(i).id() == id) {
                 return i;
             }
         }
         return -1;
     }
 
-    public ToDo getToDoItem(int id){
+    public ToDo getToDoItem(int id) {
         return toDos.get(idToIndex(id));
     }
 
-
-//    //private List<ToDoItem> getToDoItems() {
-//        return toDoItems;
-//    }
-
-//    private List<ToDoItem> getFinishedToDoItems() {
-//        return getToDoItems(true);
-//    }
-
     private List<ToDo> getActiveToDoItems() {
-        return getToDoItems( false);
+        return getToDoItems(false);
     }
 
     public void add(String text) {
@@ -78,15 +62,13 @@ public class Model {
         toDos = new ArrayList<>(getActiveToDoItems());
     }
 
-
     public List<ToDo> getItemsWithStatus(String status) {
-        return switch (status){
-            case "Completed" ->  getToDoItems(true);
-            case "Active" ->  getToDoItems(false);
+        return switch (status) {
+            case "Completed" -> getToDoItems(true);
+            case "Active" -> getToDoItems(false);
             case null, default -> toDos;
         };
     }
-
 
     public void toggle(int id) {
         int index = idToIndex(id);
@@ -104,12 +86,12 @@ public class Model {
     }
 
     public String showCountOfActiveToDoItems() {
-        int countOfActiveToDoItems =  getActiveToDoItems().size();
+        int countOfActiveToDoItems = getActiveToDoItems().size();
         var sOrEmpty = "s";
         if (countOfActiveToDoItems == 1) {
             sOrEmpty = "";
         }
-        return countOfActiveToDoItems + " item" + sOrEmpty + " left" ;
+        return countOfActiveToDoItems + " item" + sOrEmpty + " left";
     }
 
 }

@@ -1,51 +1,78 @@
 package org.example;
 
+import org.apache.commons.lang3.math.NumberUtils;
+
+import java.util.ArrayList;
 import java.util.List;
 
 import static java.io.IO.println;
+import static java.io.IO.readln;
 
 public record View() {
 
 
-    public String choiceToResponse(String choice) {
-        return switch (choice) {
-            case "1" -> "Gib den Text des neuen Items ein!";
-            case "2" -> "Gib den Index des ToDos ein!";
-            case "3" -> "Willst du wirklich alle abgeschlossenen ToDos löschen? y";
-            case "4" -> "Welche ToDos willst du anzeigen \n 1 alle  \n 2 nur aktive \n 3 nur abgeschlossene";
-            default -> "Wähle eine der Optionen 1 - 4!";
-        };
-    }
+
 
     private String showToDo(ToDo toDo) {
         var done = "❌";
         if (toDo.completed()) {
             done = "✓";
         }
-        return done + " " + toDo.text();
+        return done + " " + toDo.text() + "\t\t\t\t ID: " + toDo.id();
     }
 
-    private void printToDos(List<ToDo> toDos) {
+    public void printToDos(List<ToDo> toDos) {
+        println("\t\ttodos");
         for (var toDoItem : toDos) {
             println(showToDo(toDoItem));
         }
+        println("\n");
     }
 
-//    private List<ToDoItem> numberToItems(String choice, Model model) {
-//        return switch (choice) {
-//            case "1" -> model.getToDoItems();
-//            case "2" -> model.getActiveToDoItems();
-//            case "3" -> model.getFinishedToDoItems();
-//            default -> throw new IllegalArgumentException("Only the numbers from 1 to 3 are allowed here!");
-//        };
-//    }
-
-
-    public void viewChoiceToToDoList(String choice, Model model) {
-        if (!List.of("1", "2", "3").contains(choice)) {
-            println("Es gibt nur die Optionen 1 - 3!");
+    public List<Integer> getIDs(List<ToDo> toDos){
+        var ids = new ArrayList<Integer>();
+        for (var toDoItem : toDos) {
+                ids.add(toDoItem.id());
         }
-       // printToDos(numberToItems(choice, model));
+        return ids;
+    }
+
+    private List<Integer> numbersFromZeroTo(int number){
+        var smallerNumbersAsStrings = new ArrayList<Integer>();
+        for (int i = 1; i <= number; i++){
+            smallerNumbersAsStrings.add(i);
+        }
+        return smallerNumbersAsStrings;
+    }
+
+    public int askUntilElementInList(List<Integer> elems, String prompt) {
+        var input = "";
+        while (!NumberUtils.isCreatable(input) ||  !elems.contains(Integer.parseInt(input))) {
+            println(prompt);
+            input = readln();
+        }
+        return Integer.parseInt(input);
+    }
+
+    public int askUntilInputIsId(List<ToDo> toDos) {
+
+        return askUntilElementInList(getIDs(toDos), "Gib die ID des ToDos ein");
+    }
+
+
+    public int askUntilInputIsSmallerOrEqual(int upperBound) {
+        return askUntilElementInList(numbersFromZeroTo(upperBound),"Gib eine Zahl zwischen 1 und " + upperBound + " ein");
+    }
+
+
+
+    String numberToFilter(int number){
+        return switch (number){
+            case 1 -> "All";
+            case 2 -> "Active";
+            case 3 -> "Completed";
+            default -> throw new IllegalStateException("Unexpected value: " + number);
+        };
     }
 
 

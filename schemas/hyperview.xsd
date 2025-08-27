@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           targetNamespace="https://hyperview.org/hyperview"
+           xmlns="https://hyperview.org/hyperview"
+           elementFormDefault="qualified">
+
+    <!-- Root element -->
+    <xs:element name="screen">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="head" minOccurs="0" maxOccurs="1"/>
+                <xs:element name="body" minOccurs="1" maxOccurs="1"/>
+            </xs:sequence>
+            <xs:attribute name="style" type="xs:string"/>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="head">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="title" type="xs:string" minOccurs="0" maxOccurs="1"/>
+                <xs:element name="meta" minOccurs="0" maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="meta">
+        <xs:complexType>
+            <xs:attribute name="name" type="xs:string"/>
+            <xs:attribute name="content" type="xs:string"/>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="body">
+        <xs:complexType>
+            <xs:sequence minOccurs="0" maxOccurs="unbounded">
+                <xs:choice>
+                    <xs:element ref="view"/>
+                    <xs:element ref="list"/>
+                    <xs:element ref="text"/>
+                    <xs:element ref="input"/>
+                    <xs:element ref="switch"/>
+                    <xs:element ref="link"/>
+                    <xs:element ref="button"/>
+                </xs:choice>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <!-- Generic container -->
+    <xs:element name="view">
+        <xs:complexType mixed="true">
+            <xs:sequence minOccurs="0" maxOccurs="unbounded">
+                <xs:choice>
+                    <xs:element ref="view"/>
+                    <xs:element ref="list"/>
+                    <xs:element ref="text"/>
+                    <xs:element ref="input"/>
+                    <xs:element ref="switch"/>
+                    <xs:element ref="link"/>
+                    <xs:element ref="button"/>
+                </xs:choice>
+            </xs:sequence>
+            <xs:attribute name="id" type="xs:string"/>
+            <xs:attribute name="style" type="xs:string"/>
+        </xs:complexType>
+    </xs:element>
+
+    <!-- Basic text -->
+    <xs:element name="text" type="xs:string"/>
+
+    <!-- List with templates -->
+    <xs:element name="list">
+        <xs:complexType>
+            <xs:sequence minOccurs="0" maxOccurs="unbounded">
+                <xs:element name="template" minOccurs="0" maxOccurs="unbounded"/>
+                <xs:element ref="view" minOccurs="0" maxOccurs="unbounded"/>
+            </xs:sequence>
+            <xs:attribute name="style" type="xs:string"/>
+            <xs:attribute name="data" type="xs:string"/>
+        </xs:complexType>
+    </xs:element>
+
+    <!-- Input field -->
+    <xs:element name="input">
+        <xs:complexType>
+            <xs:attribute name="name" type="xs:string"/>
+            <xs:attribute name="value" type="xs:string"/>
+            <xs:attribute name="placeholder" type="xs:string"/>
+            <xs:attribute name="autofocus" type="xs:boolean"/>
+            <xs:attribute name="action" type="xs:string"/>
+            <xs:attribute name="target" type="xs:string"/>
+            <xs:attribute name="trigger" type="xs:string"/>
+            <xs:attribute name="style" type="xs:string"/>
+        </xs:complexType>
+    </xs:element>
+
+    <!-- Switch (checkbox/toggle) -->
+    <xs:element name="switch">
+        <xs:complexType>
+            <xs:attribute name="value" type="xs:boolean"/>
+            <xs:attribute name="action" type="xs:string"/>
+            <xs:attribute name="target" type="xs:string"/>
+            <xs:attribute name="trigger" type="xs:string"/>
+            <xs:attribute name="style" type="xs:string"/>
+        </xs:complexType>
+    </xs:element>
+
+    <!-- Link -->
+    <xs:element name="link">
+        <xs:complexType mixed="true">
+            <xs:sequence minOccurs="0" maxOccurs="unbounded">
+                <xs:element ref="text"/>
+            </xs:sequence>
+            <xs:attribute name="action" type="xs:string"/>
+            <xs:attribute name="target" type="xs:string"/>
+            <xs:attribute name="style" type="xs:string"/>
+        </xs:complexType>
+    </xs:element>
+
+    <!-- Button -->
+    <xs:element name="button">
+        <xs:complexType mixed="true">
+            <xs:sequence minOccurs="0" maxOccurs="unbounded">
+                <xs:element ref="text"/>
+            </xs:sequence>
+            <xs:attribute name="action" type="xs:string"/>
+            <xs:attribute name="method" type="xs:string"/>
+            <xs:attribute name="target" type="xs:string"/>
+            <xs:attribute name="style" type="xs:string"/>
+        </xs:complexType>
+    </xs:element>
+
+</xs:schema>

@@ -19,7 +19,7 @@
     <main>
         <ul class="todo-list">
             @for(var toDo: toDos)
-                @template.singleItem(toDo = toDo)
+                @template.web.singleItem(toDo = toDo)
             @endfor
         </ul>
     </main>

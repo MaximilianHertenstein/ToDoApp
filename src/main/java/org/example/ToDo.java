@@ -1,7 +1,5 @@
 package org.example;
 
-
-
 public record ToDo(int id, String text, boolean completed) {
 
     public ToDo(int id, String text) {
@@ -17,7 +15,3 @@ public record ToDo(int id, String text, boolean completed) {
     }
 
 }
-
-
-
-
