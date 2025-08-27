@@ -1,19 +1,20 @@
 package org.example;
 
 import io.javalin.config.JavalinConfig;
-import io.javalin.http.staticfiles.Location;
+import io.javalin.plugin.bundled.CorsPluginConfig;
 import io.javalin.rendering.template.JavalinJte;
 
 public class Utils {
     public static void configureJavalinApp(JavalinConfig javalinConfig) {
-
-        var x = new JavalinJte();
+        javalinConfig.staticFiles.add("/public");
+        javalinConfig.bundledPlugins.enableCors(cors -> {
+            //it.allowHost("http://localhost:19006");
+            cors.addRule(CorsPluginConfig.CorsRule::anyHost);
+        });
 
         javalinConfig.fileRenderer(new JavalinJte());
-
         javalinConfig.staticFiles.enableWebjars();
-        // Serve static files from classpath /public (for Hyperview styles.xml)
-        javalinConfig.staticFiles.add("/public", Location.CLASSPATH);
+
     }
 
     public static String statusToCompleted(boolean status) {
