@@ -8,16 +8,16 @@
 
 
 <doc xmlns="https://hyperview.org/hyperview">
-<screen >
+<screen>
     <head>
         <title>ToDo-App</title>
         <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <styles href="/styles.xml"/>
     </head>
 
-    <body>
     @template.mobile.app(toDos = toDos, countOfActiveToDosDisplay = countOfActiveToDosDisplay, appliedFilter = appliedFilter)
 
-    </body>
 </screen>
+</doc>
 
 

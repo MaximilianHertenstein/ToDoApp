@@ -26,7 +26,9 @@
         <view style="main">
             <list style="todo-list">
                 @for(var toDo: toDos)
-                    @template.mobile.singleItem(toDo = toDo)
+                    <view>
+                        @template.mobile.singleItem(toDo = toDo)
+                    </view>
                 @endfor
             </list>
         </view>
@@ -39,13 +41,13 @@
             <list style="filters">
                 @for(var filter: List.of("All", "Active", "Completed"))
                     <view>
-                        <link
-                                action="/todos/${filter}"
-                                target="replaceBody"
-                                style="${Utils.computeLinkClass(appliedFilter, filter)}"
-                        >
-                        <text>${filter}</text>
-                        </link>
+<%--                        <link--%>
+<%--                                action="/todos/${filter}"--%>
+<%--                                target="replaceBody"--%>
+<%--                                style="${Utils.computeLinkClass(appliedFilter, filter)}"--%>
+<%--                        >--%>
+<%--                        <text>${filter}</text>--%>
+<%--                        </link>--%>
                     </view>
                 @endfor
             </list>

@@ -14,7 +14,7 @@ public class MobileView implements ServerView {
 
          ctx.contentType("application/vnd.hyperview+xml");
          println("Set content type to hxml");
-        ctx.render(templateName, map);
+         ctx.render(templateName, map);
     }
 
 
@@ -22,9 +22,10 @@ public class MobileView implements ServerView {
         var map = Map.of("toDos", toDos, "countOfActiveToDosDisplay", countOfActiveToDosDisplay, "appliedFilter",
                 appliedFilter);
         var templateName = "mobile/mainPage.jte";
-        if (ctx.header("HX-Request") != null) {
-            templateName = "mobile/app.jte";
-        }
+        // For initial load (GET), render full document; for in-app updates (POST/DELETE, etc.), render body fragment
+//        if (!"GET".equalsIgnoreCase(ctx.method().name())) {
+//            templateName = "mobile/app.jte";
+//        }
 
         renderHXML(ctx, templateName, map);
 

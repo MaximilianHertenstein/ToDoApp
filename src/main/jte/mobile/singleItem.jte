@@ -13,12 +13,12 @@
     />
 
     <!-- Label: edit trigger -->
-    <link
-            action="/todos/${toDo.id()}/edit"
-            target="replaceSelf"
-    >
-    <text>${toDo.text()}</text>
-    </link>
+<%--    <link--%>
+<%--            action="/todos/${toDo.id()}/edit"--%>
+<%--            target="replaceSelf"--%>
+<%--    >--%>
+<%--    <text>${toDo.text()}</text>--%>
+<%--    </link>--%>
 
     <!-- Destroy button -->
     <button
