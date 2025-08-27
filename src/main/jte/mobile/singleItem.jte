@@ -2,31 +2,14 @@
 
 @param ToDo toDo
 
-<view style="${org.example.Utils.statusToCompleted(toDo.completed())}">
-    <!-- Toggle checkbox -->
-    <switch
-            style="toggle"
-            value="${toDo.completed()}"
-            action="/todos/${toDo.id()}/toggleStatus"
-            target="replaceSelf"
-            trigger="onChange"
-    />
 
-    <!-- Label: edit trigger -->
-<%--    <link--%>
-<%--            action="/todos/${toDo.id()}/edit"--%>
-<%--            target="replaceSelf"--%>
-<%--    >--%>
-<%--    <text>${toDo.text()}</text>--%>
-<%--    </link>--%>
 
-    <!-- Destroy button -->
-    <button
-            style="destroy"
-            action="/todos/${toDo.id()}"
-            method="delete"
-            target="replaceBody"
-    >
-        <text>×</text>
-    </button>
-</view>
+
+<item id = "${toDo.id()}" style="${org.example.Utils.statusToCompleted(toDo.completed())}">
+
+
+    <text style="toggle" href="todos/${toDo.id()}/toggleStatus" verb="post" target="${toDo.id()}" trigger="click" action="replace">toggle</text>
+
+    <text verb="get" href="/todos/${toDo.id()}/edit" target="${toDo.id()}" action="replace"> ${toDo.text()}</text>
+    <text style="destroy" verb = "delete" href="todos/${toDo.id()}" target="body" action="replace">destroy</text>
+</item>

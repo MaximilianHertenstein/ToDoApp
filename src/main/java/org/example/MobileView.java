@@ -11,10 +11,8 @@ import static java.io.IO.println;
 public class MobileView implements ServerView {
 
      private void renderHXML(Context ctx, String templateName, Map<String, Object> map){
-
-         ctx.contentType("application/vnd.hyperview+xml");
-         println("Set content type to hxml");
-         ctx.render(templateName, map);
+         var newctx = ctx.render(templateName, map);
+         newctx.contentType("application/vnd.hyperview+xml");
     }
 
 

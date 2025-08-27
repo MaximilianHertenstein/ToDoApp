@@ -8,58 +8,47 @@
 @param String appliedFilter
 
 
-<body>
-    <view id="app" style="todoapp" >
-        <view style="header">
-            <text style="h1">todos</text>
+<view style="todoapp" id="app">
+    <header style="header">
+        <text>todos</text>
+        <form>
+            <text-field target="body"
+                        trigger="blur"
+                        style="new-todo"
+                        placeholder="What needs to be done?"
+                        name="text_of_new_todo"
+                        autofocus="${true}"/>
 
-            <input
-                    name="text_of_new_todo"
-                    placeholder="What needs to be done?"
-                    autofocus="true"
-                    action="/todos/new"
-                    trigger="onSubmit"
-                    target="replaceBody"
-            />
-        </view>
+                <text verb="post" href="/todos/new" action="replace-inner" target="body">
+                    Submit
+                </text>
 
-        <view style="main">
-            <list style="todo-list">
-                @for(var toDo: toDos)
-                    <view>
-                        @template.mobile.singleItem(toDo = toDo)
-                    </view>
-                @endfor
-            </list>
-        </view>
 
-        <view style="footer">
-            <text style="todo-count">
-                <text style="strong">${countOfActiveToDosDisplay}</text>
-            </text>
+        </form>
 
-            <list style="filters">
-                @for(var filter: List.of("All", "Active", "Completed"))
-                    <view>
-<%--                        <link--%>
-<%--                                action="/todos/${filter}"--%>
-<%--                                target="replaceBody"--%>
-<%--                                style="${Utils.computeLinkClass(appliedFilter, filter)}"--%>
-<%--                        >--%>
-<%--                        <text>${filter}</text>--%>
-<%--                        </link>--%>
-                    </view>
-                @endfor
-            </list>
+    </header>
 
-            <button
-                    style="clear-completed"
-                    action="/todos/completed"
-                    method="delete"
-                    target="replaceBody"
-            >
-                <text>Clear completed</text>
-            </button>
-        </view>
+
+    <list style="todo-list">
+        @for(var toDo: toDos)
+            @template.mobile.singleItem(toDo = toDo)
+        @endfor
+    </list>
+
+    <view class="footer"><text style="todo-count"> ${countOfActiveToDosDisplay}</text>
+
+
+        <list style="filters">
+            @for(var filter: List.of("All", "Active", "Completed"))
+                <item>
+                    <text verb="post" href="/todos/${filter}" target="body" action="replace-inner"
+                          class="${Utils.computeLinkClass(appliedFilter, filter)}">${filter}</text>
+                </item>
+            @endfor
+        </list>
+
+        <text style="clear-completed" verb="delete" href="/todos/completed" target="body" action="replace-inner">Clear
+            completed
+        </text>
     </view>
-</body>
+</view>
