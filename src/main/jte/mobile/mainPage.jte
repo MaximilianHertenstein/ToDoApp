@@ -20,9 +20,7 @@
 
 <body>
 
-
-
-@template.app(toDos = toDos, countOfActiveToDosDisplay = countOfActiveToDosDisplay, appliedFilter = appliedFilter)
+@template.web.app(toDos = toDos, countOfActiveToDosDisplay = countOfActiveToDosDisplay, appliedFilter = appliedFilter)
 </body>
 
 </html>
