@@ -77,7 +77,7 @@ public class Utils {
         if (status) {
             return "✓";
         }
-        return "";
+        return " ";
     }
 
 

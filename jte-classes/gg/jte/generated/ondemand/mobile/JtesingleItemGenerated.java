@@ -4,21 +4,19 @@ import org.example.Utils;
 @SuppressWarnings("unchecked")
 public final class JtesingleItemGenerated {
 	public static final String JTE_NAME = "mobile/singleItem.jte";
-	public static final int[] JTE_LINE_INFO = {0,0,1,3,3,3,3,9,9,9,10,10,13,13,15,15,16,16,17,17,19,19,21,21,23,23,24,24,28,28,32,32,32,3,3,3,3};
+	public static final int[] JTE_LINE_INFO = {0,0,1,3,3,3,3,9,9,9,10,10,14,14,16,16,19,19,22,22,24,24,26,26,27,27,31,31,35,35,35,3,3,3,3};
 	public static void render(gg.jte.TemplateOutput jteOutput, gg.jte.html.HtmlInterceptor jteHtmlInterceptor, ToDo toDo) {
 		jteOutput.writeContent("\n\n\n\n<item xmlns=\"https://hyperview.org/hyperview\"\n      id=\"");
 		jteOutput.writeUserContent(toDo.id());
 		jteOutput.writeContent("\"\n      key=\"");
 		jteOutput.writeUserContent(toDo.id());
-		jteOutput.writeContent("\"\n      style=\"toDoItem\"\n>\n    <text style=\"");
+		jteOutput.writeContent("\"\n      style=\"toDoItem\"\n>\n    <text\n            style=\"");
 		jteOutput.writeUserContent(Utils.computeToggleClass(toDo.completed()));
 		jteOutput.writeContent("\"\n          verb=\"post\"\n          href=\"/todos/");
 		jteOutput.writeUserContent(toDo.id());
-		jteOutput.writeContent("/toggleStatus\"\n          target=\"");
-		jteOutput.writeUserContent(toDo.id());
-		jteOutput.writeContent("\"\n          action=\"replace\">");
+		jteOutput.writeContent("/toggleStatus?replace=true\"\n          target=\"body\"\n          action=\"replace-inner\">\n        ");
 		jteOutput.writeUserContent(Utils.statusToCheckMark(toDo.completed()));
-		jteOutput.writeContent(" </text>\n    <text\n          href=\"/todos/");
+		jteOutput.writeContent("\n    </text>\n    <text\n          href=\"/todos/");
 		jteOutput.writeUserContent(toDo.id());
 		jteOutput.writeContent("/edit\"\n          trigger=\"press\"\n          target=\"");
 		jteOutput.writeUserContent(toDo.id());
@@ -26,9 +24,9 @@ public final class JtesingleItemGenerated {
 		jteOutput.writeUserContent(org.example.Utils.statusToCompletedOrActive(toDo.completed()));
 		jteOutput.writeContent("\">\n            ");
 		jteOutput.writeUserContent(toDo.text());
-		jteOutput.writeContent("\n        </text>\n    <text style=\"destroy\"\n          verb=\"post\"\n          href=\"/todos/");
+		jteOutput.writeContent("\n        </text>\n        <text style=\"destroy\"\n              verb=\"post\"\n              href=\"/todos/");
 		jteOutput.writeUserContent(toDo.id());
-		jteOutput.writeContent("/delete?replace=true\"\n          target=\"body\"\n          action=\"replace-inner\">X</text>\n</item>\n");
+		jteOutput.writeContent("/delete?replace=true\"\n              target=\"body\"\n              action=\"replace-inner\"></text>\n</item>\n");
 	}
 	public static void renderMap(gg.jte.TemplateOutput jteOutput, gg.jte.html.HtmlInterceptor jteHtmlInterceptor, java.util.Map<String, Object> params) {
 		ToDo toDo = (ToDo)params.get("toDo");

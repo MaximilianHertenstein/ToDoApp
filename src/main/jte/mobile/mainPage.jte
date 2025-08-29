@@ -20,28 +20,28 @@
                    width="100%"
                    height="100%"/>
 
-            <style id="header" marginBottom="24" marginTop="5"  alignItems="center"/>
-            <style id="heading" fontSize="100" fontWeight="200" textAlign="center" color="#b83f45" marginBottom="10"/>
-            <style id="new-todo" borderWidth="1" borderColor="#ededed" borderRadius="0" padding="16" fontSize="24" marginBottom="0" backgroundColor="#fff"/>
-            <style id="todo-list" flexDirection="column" gap="0"/>
-            <style id="toDoItem" flexDirection="row" backgroundColor="#ffffff"  borderColor="#ededed" padding="12" alignItems="center" justifyContent="center" textAlign="center"/>
+            <style id="header" marginBottom="24" marginTop="3"  alignItems="center"/>
+            <style id="heading" fontSize="40" fontWeight="200" textAlign="center" color="#b83f45" marginBottom="10"/>
+            <style id="new-todo" borderWidth="1" borderColor="#ededed" borderRadius="0" padding="16" fontSize="20" marginBottom="0" backgroundColor="#fff"/>
+            <style id="todo-list" flexDirection="column" gap="0"  />
+            <style id="toDoItem" flexDirection="row" backgroundColor="#ffffff"  borderColor="#ededed"  padding="12" alignItems="center" justifyContent="center" textAlign="center"/>
             <style id="toggle"
-                   width="36"
-                   height="36"
-                   fontSize="24"
+                   width="25"
+                   height="25"
+                   fontSize="20"
                    marginRight="12"
                    color="#4d4d4d"
                    borderWidth="1"
                    borderColor="#ededed"
                    borderRadius="18"
-                   alignItems="center"
-                   justifyContent="center"
-                   textAlign="center"
+                   alignSelf="left"
+                   justifyContent="left"
+                   textAlign="left"
                    backgroundColor="#fff"/>
             <style id="destroy"
-                   width="36"
-                   height="36"
-                   fontSize="24"
+                   width="25"
+                   height="25"
+                   fontSize="20"
                    marginLeft="12"
                    color="#cc9a9a"
                    borderWidth="1"
@@ -50,12 +50,12 @@
                    alignItems="center"
                    justifyContent="center"
                    textAlign="center"
-                   backgroundColor="#fff"/>
-            <style id="active" fontSize="40" color="#2d3436"
-                   height="45"
+                   backgroundColor="red"/>
+            <style id="active" fontSize="20" color="#2d3436"
+                   height="20"
                    />
-            <style id="completed" textDecorationLine="line-through" color="#636e72" fontSize="40"
-                   height="45"
+            <style id="completed" textDecorationLine="line-through" color="#636e72" fontSize="20"
+                   height="20"
                    />
             <style id="footer" marginTop="32" borderTopWidth="1" borderColor="#dfe6e9" paddingTop="20" flexDirection="column" alignItems="center"/>
             <style id="todo-count" fontSize="16" color="#636e72"/>
@@ -65,9 +65,9 @@
             <style id="clear-completed" marginTop="20" padding="10" borderRadius="6" backgroundColor="#dfe6e9" color="#2d3436"/>
             <style id="primary-button"
                    marginTop="12"
-                   padding="14"
-                   paddingHorizontal="18"
-                   fontSize="40"
+                   padding="8"
+                   paddingHorizontal="10"
+                   fontSize="20"
                    color="#ffffff"
                    backgroundColor="#0984e3"
                    borderRadius="10"
@@ -76,17 +76,17 @@
                    shadowOffset="0 2"
                    shadowOpacity="0.08"/>
             <style id="toggle-completed"
-                   width="36"
-                   height="36"
-                   fontSize="24"
+                   width="25"
+                   height="25"
+                   fontSize="20"
                    marginRight="12"
                    color="#ffffff"
                    borderWidth="0"
                    borderColor="#27ae60"
                    borderRadius="18"
-                   alignItems="center"
-                   justifyContent="center"
-                   textAlign="center"
+                   alignItems="left"
+                   justifyContent="left"
+                   textAlign="left"
                    backgroundColor="#27ae60"/>
         </styles>
         <body id="body">

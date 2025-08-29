@@ -11,11 +11,14 @@
       key="${toDo.id()}"
       style="toDoItem"
 >
-    <text style="${Utils.computeToggleClass(toDo.completed())}"
+    <text
+            style="${Utils.computeToggleClass(toDo.completed())}"
           verb="post"
-          href="/todos/${toDo.id()}/toggleStatus"
-          target="${toDo.id()}"
-          action="replace">${Utils.statusToCheckMark(toDo.completed())} </text>
+          href="/todos/${toDo.id()}/toggleStatus?replace=true"
+          target="body"
+          action="replace-inner">
+        ${Utils.statusToCheckMark(toDo.completed())}
+    </text>
     <text
           href="/todos/${toDo.id()}/edit"
           trigger="press"
@@ -24,9 +27,9 @@
         style="${org.example.Utils.statusToCompletedOrActive(toDo.completed())}">
             ${toDo.text()}
         </text>
-    <text style="destroy"
-          verb="post"
-          href="/todos/${toDo.id()}/delete?replace=true"
-          target="body"
-          action="replace-inner">X</text>
+        <text style="destroy"
+              verb="post"
+              href="/todos/${toDo.id()}/delete?replace=true"
+              target="body"
+              action="replace-inner"></text>
 </item>
