@@ -1,3 +1,4 @@
+<%-- language=HXML --%>
 @import org.example.ToDo
 @import org.example.Utils
 @import java.util.List

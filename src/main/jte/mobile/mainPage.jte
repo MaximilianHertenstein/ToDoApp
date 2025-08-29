@@ -1,3 +1,5 @@
+<%-- language=HXML --%>
+
 @import org.example.ToDo
 @import java.util.List
 
@@ -5,7 +7,7 @@
 @param List<ToDo> toDos
 @param String countOfActiveToDosDisplay
 @param String appliedFilter
-
+<%-- language=HXML --%>
 
 <doc xmlns="https://hyperview.org/hyperview">
     <screen xmlns="https://hyperview.org/hyperview" style="screen">
@@ -24,39 +26,7 @@
             <style id="heading" fontSize="40" fontWeight="200" textAlign="center" color="#b83f45" marginBottom="10"/>
             <style id="new-todo" borderWidth="1" borderColor="#ededed" borderRadius="0" padding="16" fontSize="20" marginBottom="0" backgroundColor="#fff"/>
             <style id="todo-list" flexDirection="column" gap="0"  />
-            <style id="toDoItem" flexDirection="row" backgroundColor="#ffffff"  borderColor="#ededed"  padding="12" alignItems="center" justifyContent="center" textAlign="center"/>
-            <style id="toggle"
-                   width="25"
-                   height="25"
-                   fontSize="20"
-                   marginRight="12"
-                   color="#4d4d4d"
-                   borderWidth="1"
-                   borderColor="#ededed"
-                   borderRadius="18"
-                   alignSelf="left"
-                   justifyContent="left"
-                   textAlign="left"
-                   backgroundColor="#fff"/>
-            <style id="destroy"
-                   width="25"
-                   height="25"
-                   fontSize="20"
-                   marginLeft="12"
-                   color="#cc9a9a"
-                   borderWidth="1"
-                   borderColor="#ededed"
-                   borderRadius="18"
-                   alignItems="center"
-                   justifyContent="center"
-                   textAlign="center"
-                   backgroundColor="red"/>
-            <style id="active" fontSize="20" color="#2d3436"
-                   height="20"
-                   />
-            <style id="completed" textDecorationLine="line-through" color="#636e72" fontSize="20"
-                   height="20"
-                   />
+
             <style id="footer" marginTop="32" borderTopWidth="1" borderColor="#dfe6e9" paddingTop="20" flexDirection="column" alignItems="center"/>
             <style id="todo-count" fontSize="16" color="#636e72"/>
             <style id="filters" flexDirection="row" marginTop="16" gap="20"/>
@@ -75,19 +45,72 @@
                    shadowColor="#000"
                    shadowOffset="0 2"
                    shadowOpacity="0.08"/>
+            <style id="toDoItem"
+                   flexDirection="row"
+                   backgroundColor="#ffffff"
+                   borderBottomWidth="1"
+                   borderBottomColor="#ededed"
+                   padding="16"
+                   alignItems="center"
+                   justifyContent="space-between"
+                   minHeight="60"/>
+
+            <style id="toggle"
+                   width="44"
+                   height="44"
+                   fontSize="24"
+                   marginRight="16"
+                   color="#4d4d4d"
+                   borderWidth="2"
+                   borderColor="#ededed"
+                   borderRadius="22"
+                   alignItems="center"
+                   justifyContent="center"
+                   textAlign="center"
+                   backgroundColor="#fff"/>
+
             <style id="toggle-completed"
-                   width="25"
-                   height="25"
-                   fontSize="20"
-                   marginRight="12"
+                   width="44"
+                   height="44"
+                   fontSize="24"
+                   marginRight="16"
                    color="#ffffff"
                    borderWidth="0"
                    borderColor="#27ae60"
-                   borderRadius="18"
-                   alignItems="left"
-                   justifyContent="left"
-                   textAlign="left"
+                   borderRadius="22"
+                   alignItems="center"
+                   justifyContent="center"
+                   textAlign="center"
                    backgroundColor="#27ae60"/>
+
+            <style id="destroy"
+                   width="44"
+                   height="44"
+                   fontSize="18"
+                   marginLeft="16"
+                   color="#ffffff"
+                   borderWidth="0"
+                   borderRadius="22"
+                   alignItems="center"
+                   justifyContent="center"
+                   textAlign="center"
+                   backgroundColor="#e74c3c"/>
+
+            <style id="active"
+                   fontSize="18"
+                   color="#2d3436"
+                   flex="1"
+                   paddingVertical="12"
+                   paddingHorizontal="8"/>
+
+            <style id="completed"
+                   textDecorationLine="line-through"
+                   color="#636e72"
+                   fontSize="18"
+                   flex="1"
+                   paddingVertical="12"
+                   paddingHorizontal="8"/>
+
         </styles>
         <body id="body">
         @template.mobile.app(toDos = toDos, countOfActiveToDosDisplay = countOfActiveToDosDisplay, appliedFilter = appliedFilter)
