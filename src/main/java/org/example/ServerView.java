@@ -14,6 +14,7 @@ public class ServerView  {
          boolean acceptsHXML = ctx.header("Accept").contains("hyperview");
          if (acceptsHXML) {
              folder = "mobile/";
+             ctx.contentType("application/vnd.hyperview+xml");
 
          }
          var newCTX = ctx.render(folder + templateName, map);

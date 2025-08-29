@@ -1,5 +1,4 @@
 import io.javalin.Javalin;
-import org.example.ServerView;
 import org.example.ServerController;
 import org.example.Utils;
 
@@ -10,7 +9,6 @@ void main() {
 private static void hostCommonRoutes(Javalin webApp, ServerController serverController) {
     webApp.get("/todos", serverController::renderApp);
     webApp.post("/todos/new", serverController::addToDo);
-
     webApp.post("/todos/{id}/toggleStatus", serverController::toggleStatus);
     webApp.post("/todos/setFilter/{filter}", serverController::setFilter);
     webApp.get("/todos/{id}/edit", serverController::editToDo);

@@ -29,7 +29,7 @@
         <ul class="filters">
             @for(var filter: List.of("All", "Active", "Completed"))
                 <li><a hx-post="/todos/setFilter/${filter}" hx-target="body"
-                       class="${Utils.computeLinkClass(appliedFilter, filter)}">${filter}</a></li>
+                       class="${Utils.computeFilterClass(appliedFilter, filter)}">${filter}</a></li>
             @endfor
         </ul>
 

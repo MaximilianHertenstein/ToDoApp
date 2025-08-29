@@ -8,136 +8,67 @@
 
 
 <doc xmlns="https://hyperview.org/hyperview">
-    <screen>
-<styles>
-        <!-- Screen -->
-        <style name="screen">
-            <flex>1</flex>
-            <backgroundColor>#f5f5f5</backgroundColor>
-        </style>
+    <screen style="screen">
+        <styles>
 
-        <!-- Root app container -->
-        <style name="todoapp">
-            <flex>1</flex>
-            <backgroundColor>#fff</backgroundColor>
-            <padding>20</padding>
-        </style>
+            <style id="screen"
+                   flex="1"
+                   backgroundColor="#f7f9fc"
+                   height="100vh"
+                   width="100%"/>
+            <style id="todoapp"
+                   flex="1"
+                   backgroundColor="#ffffff"
+                   padding="24"
+                   width="100%"
+                   height="100%"
+                   borderRadius="16"/>
 
-        <!-- Header -->
-        <style name="header">
-            <marginBottom>20</marginBottom>
-            <alignItems>center</alignItems>
-        </style>
+            <style id="header" marginBottom="32" alignItems="center"/>
+            <style id="heading" fontSize="30" fontWeight="bold" textAlign="center" color="#2d3436" marginBottom="20"/>
+            <style id="new-todo" borderWidth="1" borderColor="#dfe6e9" borderRadius="12" padding="14" fontSize="18" marginBottom="20" backgroundColor="#ffffff" shadowColor="#000" shadowOffset="0 2" shadowOpacity="0.05"/>
+            <style id="todo-list" flexDirection="column" gap="16"/>
+            <style id="toDoItem" flexDirection="row" alignItems="center" backgroundColor="#ffffff" borderWidth="1" borderColor="#dcdde1" padding="14" borderRadius="12" shadowColor="#000" shadowOffset="0 2" shadowOpacity="0.05"/>
+            <style id="toggle"
+                   width="32"
+                   height="32"
+                   fontSize="20"
+                   marginRight="16"
+                   color="#00b894"
+                   borderWidth="2"
+                   borderColor="#00b894"
+                   borderRadius="16"
+                   alignItems="center"
+                   textAlign="center"
+                   backgroundColor="#e8fff8"
+                   opacity="0.95"
 
-        <style name="heading">
-            <fontSize>70</fontSize>
-            <fontWeight>bold</fontWeight>
-            <textAlign>center</textAlign>
-            <color>#b83f45</color>
-        </style>
+            />
+            <style id="destroy"
+                   width="32"
+                   height="32"
+                   marginLeft="16"
+                   color="#ff6b6b"
+                   borderWidth="2"
+                   borderColor="#ff6b6b"
+                   borderRadius="16"
+                   alignItems="center"
+                   justifyContent="center"
+                   backgroundColor="#fff5f5"
+                   opacity="0.95"
 
-        <!-- Input for new todo -->
-        <style name="new-todo">
-            <borderWidth>1</borderWidth>
-            <borderColor>#999</borderColor>
-            <borderRadius>4</borderRadius>
-            <padding>10</padding>
-            <fontSize>18</fontSize>
-            <marginTop>10</marginTop>
-            <marginBottom>10</marginBottom>
-        </style>
-
-        <!-- Main list -->
-        <style name="todo-list">
-            <flexDirection>column</flexDirection>
-        </style>
-
-        <!-- Todo item states -->
-        <style name="toggle">
-            <marginRight>10</marginRight>
-        </style>
-
-        <style name="destroy">
-            <marginLeft>10</marginLeft>
-            <color>#cc9a9a</color>
-            <fontSize>20</fontSize>
-        </style>
-
-        <style name="completed">
-            <textDecorationLine>line-through</textDecorationLine>
-            <color>#d9d9d9</color>
-        </style>
-
-        <style name="editing">
-            <backgroundColor>#fffbe6</backgroundColor>
-            <padding>10</padding>
-        </style>
-
-        <style name="edit">
-            <borderWidth>1</borderWidth>
-            <borderColor>#999</borderColor>
-            <padding>10</padding>
-            <fontSize>18</fontSize>
-            <flex>1</flex>
-        </style>
-
-        <!-- Footer -->
-        <style name="footer">
-            <marginTop>20</marginTop>
-            <borderTopWidth>1</borderTopWidth>
-            <borderColor>#eee</borderColor>
-            <paddingTop>10</paddingTop>
-            <flexDirection>column</flexDirection>
-            <alignItems>center</alignItems>
-        </style>
-
-        <style name="todo-count">
-            <fontSize>14</fontSize>
-            <color>#555</color>
-        </style>
-
-        <style name="strong">
-            <fontWeight>bold</fontWeight>
-        </style>
-
-        <!-- Filters -->
-        <style name="filters">
-            <flexDirection>row</flexDirection>
-            <justifyContent>center</justifyContent>
-            <marginTop>10</marginTop>
-        </style>
-
-        <style name="filters-link">
-            <marginLeft>5</marginLeft>
-            <marginRight>5</marginRight>
-            <color>#555</color>
-        </style>
-
-        <style name="filters-link-active">
-            <color>#000</color>
-            <fontWeight>bold</fontWeight>
-        </style>
-
-        <!-- Clear button -->
-        <style name="clear-completed">
-            <marginTop>10</marginTop>
-            <padding>8</padding>
-            <borderWidth>1</borderWidth>
-            <borderColor>#ddd</borderColor>
-            <borderRadius>4</borderRadius>
-            <backgroundColor>#f5f5f5</backgroundColor>
-        </style>
-    </styles>
-
-
-
-<body id = "body">
-
-@template.mobile.app(toDos = toDos, countOfActiveToDosDisplay = countOfActiveToDosDisplay, appliedFilter = appliedFilter)
-
+            />
+            <style id="active" fontSize="18" color="#2d3436" flex="1"/>
+            <style id="completed" textDecorationLine="line-through" color="#636e72" fontSize="18"/>
+                        <style id="footer" marginTop="32" borderTopWidth="1" borderColor="#dfe6e9" paddingTop="20" flexDirection="column" alignItems="center"/>
+            <style id="todo-count" fontSize="16" color="#636e72"/>
+            <style id="filters" flexDirection="row" marginTop="16" gap="20"/>
+            <style id="filter" color="#0984e3"/>
+            <style id="selected" color="#74b9ff" fontWeight="bold"/>
+            <style id="clear-completed" marginTop="20" padding="10" borderRadius="6" backgroundColor="#dfe6e9" color="#2d3436"/>
+        </styles>
+        <body id="body">
+        @template.mobile.app(toDos = toDos, countOfActiveToDosDisplay = countOfActiveToDosDisplay, appliedFilter = appliedFilter)
         </body>
-        </screen>
-
-
-
+    </screen>
 </doc>

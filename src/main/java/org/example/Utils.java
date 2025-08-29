@@ -49,19 +49,27 @@ public class Utils {
         return "";
     }
 
-    public static String computeLinkClass(String filter, String linkToFilter) {
+    public static String computeFilterClass(String filter, String linkToFilter) {
         if (filter.equals(linkToFilter)) {
             return "selected";
         }
         return "";
     }
 
-    public static String done(String newFilter, String oldFilter) {
-        if (newFilter == null) {
-            return oldFilter;
-        } else {
-            return newFilter;
+    public static String statusToCompletedOrActive(boolean status) {
+        if (status) {
+            return "completed";
         }
+        return "active";
     }
+
+    public static String statusToCheckMark(boolean status) {
+        if (status) {
+            return "✓";
+        }
+        return "";
+    }
+
+
 
 }

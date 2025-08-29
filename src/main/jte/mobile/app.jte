@@ -8,21 +8,21 @@
 @param String appliedFilter
 
 
-<view xmlns="https://hyperview.org/hyperview" style="todoapp" id="app" >
+<view xmlns="https://hyperview.org/hyperview" style="todoapp" id="app">
     <header style="header">
-        <text style = "heading" >todos</text>
+        <text style="heading">todos</text>
         <form>
             <text-field
-                        trigger="blur"
-                        style="new-todo"
-                        placeholder="What needs to be done?"
-                        name="text_of_new_todo"
+                    trigger="blur"
+                    style="new-todo"
+                    placeholder="What needs to be done?"
+                    name="text_of_new_todo"
 
             />
 
-                <text verb="post" href="/todos/new?replace=true" action="replace-inner" target="body">
-                    Submit
-                </text>
+            <text verb="post" href="/todos/new?replace=true" action="replace-inner" target="body">
+                Submit
+            </text>
 
 
         </form>
@@ -41,16 +41,17 @@
         <text style="todo-count"> ${countOfActiveToDosDisplay}</text>
 
 
-        <list style="filters">
+        <view style="filters">
             @for(var filter: List.of("All", "Active", "Completed"))
-                <item key="${filter}">
-                    <text verb="post" href="/todos/setFilter/${filter}?replace=true" target="body" action="replace-inner"
-                          class="${Utils.computeLinkClass(appliedFilter, filter)}">${filter}</text>
-                </item>
-            @endfor
-        </list>
 
-        <text style="clear-completed" verb="post" href="/todos/clearCompleted?replace=true" target="body" action="replace-inner">Clear
+                    <text verb="post" href="/todos/setFilter/${filter}?replace=true" target="body"
+                          action="replace-inner"
+                          style="${Utils.computeFilterClass(appliedFilter, filter)} filter">${filter}</text>
+            @endfor
+        </view>
+
+        <text style="clear-completed" verb="post" href="/todos/clearCompleted?replace=true" target="body"
+              action="replace-inner">Clear
             completed
         </text>
     </view>
