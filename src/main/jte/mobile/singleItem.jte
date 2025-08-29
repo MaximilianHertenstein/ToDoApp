@@ -9,22 +9,23 @@
 <item xmlns="https://hyperview.org/hyperview"
       id="${toDo.id()}"
       key="${toDo.id()}"
-      style="toDoItem">
-    <text style="toggle"
+      style="toDoItem"
+>
+    <text style="${Utils.computeToggleClass(toDo.completed())}"
           verb="post"
           href="/todos/${toDo.id()}/toggleStatus"
           target="${toDo.id()}"
           action="replace">${Utils.statusToCheckMark(toDo.completed())} </text>
-    <text verb="get"
+    <text
           href="/todos/${toDo.id()}/edit"
           target="${toDo.id()}"
           action="replace"
-          style="${org.example.Utils.statusToCompletedOrActive(toDo.completed())}">
-        ${toDo.text()}
-    </text>
+        style="${org.example.Utils.statusToCompletedOrActive(toDo.completed())}">
+            ${toDo.text()}
+        </text>
     <text style="destroy"
           verb="post"
-          href="/todos/${toDo.id()}/delete?q=replace"
+          href="/todos/${toDo.id()}/delete?replace=true"
           target="body"
-          action="replace"> </text>
+          action="replace">X</text>
 </item>

@@ -20,8 +20,8 @@
 
             />
 
-            <text verb="post" href="/todos/new?replace=true" action="replace-inner" target="body">
-                Submit
+            <text verb="post" href="/todos/new?replace=true" action="replace-inner" target="body" style="primary-button">
+                ➕ Add
             </text>
 
 
@@ -36,23 +36,20 @@
         @endfor
     </list>
 
-    <view class="footer">
+    <view style="footer">
 
         <text style="todo-count"> ${countOfActiveToDosDisplay}</text>
 
-
         <view style="filters">
             @for(var filter: List.of("All", "Active", "Completed"))
-
-                    <text verb="post" href="/todos/setFilter/${filter}?replace=true" target="body"
-                          action="replace-inner"
-                          style="${Utils.computeFilterClass(appliedFilter, filter)} filter">${filter}</text>
+                <text verb="post" href="/todos/setFilter/${filter}?replace=true" target="body"
+                      action="replace-inner"
+                      style="${Utils.computeFilterClass(appliedFilter, filter)} filter">${filter}</text>
             @endfor
         </view>
 
         <text style="clear-completed" verb="post" href="/todos/clearCompleted?replace=true" target="body"
-              action="replace-inner">Clear
-            completed
+              action="replace-inner">Clear completed
         </text>
     </view>
 </view>

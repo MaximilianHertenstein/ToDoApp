@@ -35,7 +35,7 @@ public class Utils {
 
     public static void configureJavalinForMobile(JavalinConfig javalinConfig){
         configureJavalinBasic(javalinConfig);
-        javalinConfig.staticFiles.add("/public");
+        //javalinConfig.staticFiles.add("/public");
         CodeResolver codeResolver = new DirectoryCodeResolver(Path.of("src/main/jte")); // This is the directory where your .jte files are located.
         var templateEngine = TemplateEngine.create(codeResolver, ContentType.Plain);
         javalinConfig.fileRenderer(new JavalinJte(templateEngine));
@@ -55,6 +55,16 @@ public class Utils {
         }
         return "";
     }
+
+
+    public static String computeToggleClass(boolean completed){
+        if (completed) {
+            return "toggle-completed";
+        }
+        return "toggle";
+    }
+
+
 
     public static String statusToCompletedOrActive(boolean status) {
         if (status) {
