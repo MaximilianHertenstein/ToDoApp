@@ -4,7 +4,7 @@ import org.example.Utils;
 @SuppressWarnings("unchecked")
 public final class JtesingleItemGenerated {
 	public static final String JTE_NAME = "mobile/singleItem.jte";
-	public static final int[] JTE_LINE_INFO = {0,0,1,3,3,3,3,9,9,9,10,10,14,14,16,16,19,19,22,22,24,24,26,26,27,27,31,31,35,35,35,3,3,3,3};
+	public static final int[] JTE_LINE_INFO = {2,2,3,5,5,5,5,11,11,11,12,12,16,16,18,18,21,21,24,24,26,26,28,28,29,29,33,33,37,37,37,5,5,5,5};
 	public static void render(gg.jte.TemplateOutput jteOutput, gg.jte.html.HtmlInterceptor jteHtmlInterceptor, ToDo toDo) {
 		jteOutput.writeContent("\n\n\n\n<item xmlns=\"https://hyperview.org/hyperview\"\n      id=\"");
 		jteOutput.writeUserContent(toDo.id());
