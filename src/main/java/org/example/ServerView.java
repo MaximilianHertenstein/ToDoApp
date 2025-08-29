@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Map;
 
 
-public class MobileView implements ServerView {
+public class ServerView  {
 
      private void renderTemplate(Context ctx, String templateName, Map<String, Object> map){
          var folder = "web/";

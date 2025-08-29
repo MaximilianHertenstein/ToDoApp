@@ -2,20 +2,13 @@ package org.example;
 
 import io.javalin.http.Context;
 
-import static java.io.IO.println;
-
 public class ServerController {
     Model model = new Model();
-    ServerView view;
+    ServerView view = new ServerView();
     String currentFilter = "All";
 
 
-    public ServerController(ServerView view){
-        this.view = view;
-    }
-
     public void renderApp(Context ctx) {
-        //println(ctx.contentType());
         var toDos = model.getItemsWithStatus(currentFilter);
         view.renderApp(ctx, toDos, model.showCountOfActiveToDoItems(), currentFilter);
     }

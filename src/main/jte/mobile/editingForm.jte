@@ -4,20 +4,20 @@
 
 
 
-<item xmlns="https://hyperview.org/hyperview" key="${toDo.id()} id="${toDo.id()}   style="editing">
+<item xmlns="https://hyperview.org/hyperview" id="${toDo.id()}  >
     <form>
         <text-field
-                style="edit new-todo"
-                autofocus="${true}"
-                  target="${toDo.id()}"
+                placeholder="${toDo.text()}"
                 value="${toDo.text()}"
-               name="updated_text_of_new_todo" >
+               name="updated_text_of_new_todo"
+        />
             <text verb="post"
                   href="todos/${toDo.id()}/edit"
+                  target="${toDo.id()}"
                   action = "replace"
             > Submit </text>
 
-            </form>
+    </form>
 
 </item>
 

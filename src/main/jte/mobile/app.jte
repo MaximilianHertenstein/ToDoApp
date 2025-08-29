@@ -12,12 +12,11 @@
     <header style="header">
         <text style = "heading" >todos</text>
         <form>
-            <text-field target="body"
+            <text-field
                         trigger="blur"
                         style="new-todo"
                         placeholder="What needs to be done?"
                         name="text_of_new_todo"
-                        autofocus="${true}"
 
             />
 

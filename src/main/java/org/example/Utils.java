@@ -12,19 +12,35 @@ import io.javalin.rendering.template.JavalinJte;
 import java.nio.file.Path;
 
 public class Utils {
-    public static void configureJavalinApp(JavalinConfig javalinConfig) {
-        javalinConfig.staticFiles.add("/public");
+    private static void configureJavalinBasic(JavalinConfig javalinConfig) {
+
         javalinConfig.bundledPlugins.enableCors(cors -> {
             //it.allowHost("http://localhost:19006");
             cors.addRule(CorsPluginConfig.CorsRule::anyHost);
         });
-//        CodeResolver codeResolver = new DirectoryCodeResolver(Path.of("src/main/jte")); // This is the directory where your .jte files are located.
-//        var templateEngine = TemplateEngine.create(codeResolver, ContentType.Plain);
-//        javalinConfig.fileRenderer(new JavalinJte(templateEngine));
-        javalinConfig.fileRenderer(new JavalinJte());
         javalinConfig.staticFiles.enableWebjars();
 
+
+
+        //javalinConfig.fileRenderer(new JavalinJte());
+
+
     }
+    public static void configureJavalinForWeb(JavalinConfig javalinConfig){
+        configureJavalinBasic(javalinConfig);
+        javalinConfig.fileRenderer(new JavalinJte());
+    }
+
+
+
+    public static void configureJavalinForMobile(JavalinConfig javalinConfig){
+        configureJavalinBasic(javalinConfig);
+        javalinConfig.staticFiles.add("/public");
+        CodeResolver codeResolver = new DirectoryCodeResolver(Path.of("src/main/jte")); // This is the directory where your .jte files are located.
+        var templateEngine = TemplateEngine.create(codeResolver, ContentType.Plain);
+        javalinConfig.fileRenderer(new JavalinJte(templateEngine));
+    }
+
 
     public static String statusToCompleted(boolean status) {
         if (status) {
