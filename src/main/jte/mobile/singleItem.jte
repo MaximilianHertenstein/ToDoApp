@@ -18,6 +18,7 @@
           action="replace">${Utils.statusToCheckMark(toDo.completed())} </text>
     <text
           href="/todos/${toDo.id()}/edit"
+          trigger="press"
           target="${toDo.id()}"
           action="replace"
         style="${org.example.Utils.statusToCompletedOrActive(toDo.completed())}">
@@ -27,5 +28,5 @@
           verb="post"
           href="/todos/${toDo.id()}/delete?replace=true"
           target="body"
-          action="replace">X</text>
+          action="replace-inner">X</text>
 </item>

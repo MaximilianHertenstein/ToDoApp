@@ -5,9 +5,9 @@ import java.util.List;
 @SuppressWarnings("unchecked")
 public final class JteappGenerated {
 	public static final String JTE_NAME = "mobile/app.jte";
-	public static final int[] JTE_LINE_INFO = {0,0,1,2,5,5,5,5,33,33,33,34,34,35,35,40,40,43,43,44,44,46,46,46,46,47,47,54,54,54,5,6,7,7,7,7};
+	public static final int[] JTE_LINE_INFO = {0,0,1,2,5,5,5,5,33,33,33,34,34,35,35,40,40,43,43,44,44,46,46,46,46,47,47,56,56,56,5,6,7,7,7,7};
 	public static void render(gg.jte.TemplateOutput jteOutput, gg.jte.html.HtmlInterceptor jteHtmlInterceptor, List<ToDo> toDos, String countOfActiveToDosDisplay, String appliedFilter) {
-		jteOutput.writeContent("\n\n<view xmlns=\"https://hyperview.org/hyperview\" style=\"todoapp\" id=\"app\">\n    <header style=\"header\">\n        <text style=\"heading\">todos</text>\n        <form>\n            <text-field\n                    trigger=\"blur\"\n                    style=\"new-todo\"\n                    placeholder=\"What needs to be done?\"\n                    name=\"text_of_new_todo\"\n\n            />\n\n            <text verb=\"post\" href=\"/todos/new?replace=true\" action=\"replace-inner\" target=\"body\" style=\"primary-button\">\n                ➕ Add\n            </text>\n\n\n        </form>\n\n    </header>\n\n\n    <list style=\"todo-list\">\n        ");
+		jteOutput.writeContent("\n\n<view  xmlns=\"https://hyperview.org/hyperview\" style=\"todoapp\" id=\"app\">\n    <header style=\"header\">\n        <text style=\"heading\">todos</text>\n        <form>\n            <text-field\n                    trigger=\"blur\"\n                    style=\"new-todo\"\n                    placeholder=\"What needs to be done?\"\n                    name=\"text_of_new_todo\"\n\n            />\n\n            <text verb=\"post\" href=\"/todos/new?replace=true\" action=\"replace-inner\" target=\"body\" style=\"primary-button\">\n                ➕ Add\n            </text>\n\n\n        </form>\n\n    </header>\n\n\n    <list style=\"todo-list\">\n        ");
 		for (var toDo: toDos) {
 			jteOutput.writeContent("\n            ");
 			gg.jte.generated.ondemand.mobile.JtesingleItemGenerated.render(jteOutput, jteHtmlInterceptor, toDo);
@@ -25,7 +25,7 @@ public final class JteappGenerated {
 			jteOutput.writeUserContent(filter);
 			jteOutput.writeContent("</text>\n            ");
 		}
-		jteOutput.writeContent("\n        </view>\n\n        <text style=\"clear-completed\" verb=\"post\" href=\"/todos/clearCompleted?replace=true\" target=\"body\"\n              action=\"replace-inner\">Clear completed\n        </text>\n    </view>\n</view>");
+		jteOutput.writeContent("\n        </view>\n\n        <text style=\"clear-completed\" verb=\"post\" href=\"/todos/clearCompleted?replace=true\" target=\"body\"\n              action=\"replace-inner\">Clear completed\n        </text>\n    </view>\n</view>\n\n");
 	}
 	public static void renderMap(gg.jte.TemplateOutput jteOutput, gg.jte.html.HtmlInterceptor jteHtmlInterceptor, java.util.Map<String, Object> params) {
 		List<ToDo> toDos = (List<ToDo>)params.get("toDos");

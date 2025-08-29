@@ -8,22 +8,19 @@
 
 
 <doc xmlns="https://hyperview.org/hyperview">
-    <screen style="screen">
+    <screen xmlns="https://hyperview.org/hyperview" style="screen">
         <styles>
-
             <style id="screen"
-                   flex="1"
                    backgroundColor="#f5f5f5"
                    height="100vh"
                    width="100%"/>
             <style id="todoapp"
-                   flex="1"
                    backgroundColor="#ffffff"
                    padding="0"
                    width="100%"
                    height="100%"/>
 
-            <style id="header" marginBottom="24" alignItems="center"/>
+            <style id="header" marginBottom="24" marginTop="5"  alignItems="center"/>
             <style id="heading" fontSize="100" fontWeight="200" textAlign="center" color="#b83f45" marginBottom="10"/>
             <style id="new-todo" borderWidth="1" borderColor="#ededed" borderRadius="0" padding="16" fontSize="24" marginBottom="0" backgroundColor="#fff"/>
             <style id="todo-list" flexDirection="column" gap="0"/>
@@ -54,9 +51,13 @@
                    justifyContent="center"
                    textAlign="center"
                    backgroundColor="#fff"/>
-            <style id="active" fontSize="18" color="#2d3436" flex="1"/>
-            <style id="completed" textDecorationLine="line-through" color="#636e72" fontSize="18"/>
-                        <style id="footer" marginTop="32" borderTopWidth="1" borderColor="#dfe6e9" paddingTop="20" flexDirection="column" alignItems="center"/>
+            <style id="active" fontSize="40" color="#2d3436"
+                   height="45"
+                   />
+            <style id="completed" textDecorationLine="line-through" color="#636e72" fontSize="40"
+                   height="45"
+                   />
+            <style id="footer" marginTop="32" borderTopWidth="1" borderColor="#dfe6e9" paddingTop="20" flexDirection="column" alignItems="center"/>
             <style id="todo-count" fontSize="16" color="#636e72"/>
             <style id="filters" flexDirection="row" marginTop="16" gap="20"/>
             <style id="filter" color="#0984e3"/>
@@ -66,7 +67,7 @@
                    marginTop="12"
                    padding="14"
                    paddingHorizontal="18"
-                   fontSize="18"
+                   fontSize="40"
                    color="#ffffff"
                    backgroundColor="#0984e3"
                    borderRadius="10"
