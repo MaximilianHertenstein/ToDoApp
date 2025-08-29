@@ -1,7 +1,8 @@
 package org.example;
 
 import io.javalin.http.Context;
-import io.javalin.http.HttpStatus;
+
+import static java.io.IO.println;
 
 public class ServerController {
     Model model = new Model();
@@ -13,11 +14,8 @@ public class ServerController {
         this.view = view;
     }
 
-    public void index(Context ctx) {
-        ctx.redirect("/todos", HttpStatus.forStatus(303));
-    }
-
     public void renderApp(Context ctx) {
+        //println(ctx.contentType());
         var toDos = model.getItemsWithStatus(currentFilter);
         view.renderApp(ctx, toDos, model.showCountOfActiveToDoItems(), currentFilter);
     }
@@ -42,7 +40,7 @@ public class ServerController {
     public void toggleStatus(Context ctx) {
         var idOfToDo = Integer.parseInt(ctx.pathParam("id"));
         model.toggle(idOfToDo);
-        view.renderToDo(ctx, model.getToDoItem(idOfToDo));
+        renderApp(ctx);
     }
 
     public void setFilter(Context ctx) {

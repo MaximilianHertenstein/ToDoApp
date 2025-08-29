@@ -6,7 +6,6 @@ import io.javalin.http.Context;
 import java.util.List;
 import java.util.Map;
 
-import static java.io.IO.println;
 
 public class MobileView implements ServerView {
 
@@ -20,10 +19,9 @@ public class MobileView implements ServerView {
         var map = Map.of("toDos", toDos, "countOfActiveToDosDisplay", countOfActiveToDosDisplay, "appliedFilter",
                 appliedFilter);
         var templateName = "mobile/mainPage.jte";
-        // For initial load (GET), render full document; for in-app updates (POST/DELETE, etc.), render body fragment
-//        if (!"GET".equalsIgnoreCase(ctx.method().name())) {
-//            templateName = "mobile/app.jte";
-//        }
+        if (ctx.queryParam("replace")!= null)  {
+            templateName = "mobile/app.jte";
+        }
 
         renderHXML(ctx, templateName, map);
 

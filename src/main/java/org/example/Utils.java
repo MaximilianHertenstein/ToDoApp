@@ -18,9 +18,10 @@ public class Utils {
             //it.allowHost("http://localhost:19006");
             cors.addRule(CorsPluginConfig.CorsRule::anyHost);
         });
-        CodeResolver codeResolver = new DirectoryCodeResolver(Path.of("src/main/jte")); // This is the directory where your .jte files are located.
-        var templateEngine = TemplateEngine.create(codeResolver, ContentType.Plain);
-        javalinConfig.fileRenderer(new JavalinJte(templateEngine));
+//        CodeResolver codeResolver = new DirectoryCodeResolver(Path.of("src/main/jte")); // This is the directory where your .jte files are located.
+//        var templateEngine = TemplateEngine.create(codeResolver, ContentType.Plain);
+//        javalinConfig.fileRenderer(new JavalinJte(templateEngine));
+        javalinConfig.fileRenderer(new JavalinJte());
         javalinConfig.staticFiles.enableWebjars();
 
     }

@@ -5,11 +5,27 @@
 
 
 
-<item id = "${toDo.id()}" style="${org.example.Utils.statusToCompleted(toDo.completed())}">
+<item xmlns="https://hyperview.org/hyperview" id = "${toDo.id()}"  key = "${toDo.id()}" style="${org.example.Utils.statusToCompleted(toDo.completed())}">
 
 
-    <text style="toggle" href="todos/${toDo.id()}/toggleStatus" verb="post" target="${toDo.id()}" trigger="click" action="replace">toggle</text>
+    <text style="toggle"
+          verb="post"
+          href="/todos/${toDo.id()}/toggleStatus"
+          target="${toDo.id()}"
+          action="replace">
+        toggle
+    </text>
 
-    <text verb="get" href="/todos/${toDo.id()}/edit" target="${toDo.id()}" action="replace"> ${toDo.text()}</text>
-    <text style="destroy" verb = "delete" href="todos/${toDo.id()}" target="body" action="replace">destroy</text>
+    <text verb="get"
+          href="/todos/${toDo.id()}/edit"
+          target="${toDo.id()}"
+          action="replace">
+        ${toDo.text()}
+    </text>
+    <text style="destroy"
+          verb = "post"
+          href="/todos/${toDo.id()}/delete?q=replace"
+          target="body"
+          action="replace">
+        destroy</text>
 </item>
