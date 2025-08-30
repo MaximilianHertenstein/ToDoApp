@@ -19,7 +19,7 @@ public final class JteappGenerated {
 		for (var filter: List.of("All", "Active", "Completed")) {
 			jteOutput.writeContent("\n                <text verb=\"post\" href=\"/todos/setFilter/");
 			jteOutput.writeUserContent(filter);
-			jteOutput.writeContent("?replace=true\" target=\"body\"\n                      action=\"replace-inner\"\n                      style=\"ordinary-text ");
+			jteOutput.writeContent("?replace=true\" target=\"body\"\n                      action=\"replace-inner\"\n                      style=\"filter ordinary-text ");
 			jteOutput.writeUserContent(Utils.computeFilterClass(appliedFilter, filter));
 			jteOutput.writeContent(" \">");
 			jteOutput.writeUserContent(filter);

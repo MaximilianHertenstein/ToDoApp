@@ -16,101 +16,99 @@
                    backgroundColor="#000000"
                    height="100%"
                    width="100%"
-                   justifyContent="space-evenly"
-                   />
+                   justifyContent="center"
+            />
             <style id="todoapp"
                    width="100%"
                    backgroundColor="#000000"
                    flexDirection="column"
                    height="90%"
-                   justifyContent="space-between"/>
-            <style id="input-container"
-                   flexDirection="row"
-                    width="30%"
-                   alignSelf="center"
-                     justifyContent="space-evenly"
+                   justifyContent="center"
             />
             <style id="header"
                    alignItems="center"
-
-                   />
-            <style id="heading"
-                   fontSize="60"
-                   fontWeight="200"
-                   textAlign="center"
-                   color="#ff0000"
-                   fontFamily="Helvetica"
-                   />
-
-
-            <style id="ordinary-text"
-                   fontSize="20"
-                   color="#FFFFFF"
-                   textAlign="center"
-                   />
-            <style id="new-todo"
-                   fontSize="20"
-                   width="40%"
-                   backgroundColor="#FFFFFF"
-                   color="#000000"
-                   />
-            <style id="edit-todo"
-                   fontSize="20"
-                   width="100%"
-                   backgroundColor="#FFFFFF"
-                   color="#000000"
+                   marginVertical="24"
             />
-
+            <style id="heading"
+                   fontSize="36"
+                   fontWeight="bold"
+                   textAlign="center"
+                   color="#FFFFFF"
+                   fontFamily="Helvetica"
+                   marginBottom="16"
+            />
+            <style id="ordinary-text"
+                   fontSize="18"
+                   color="#CCCCCC"
+                   textAlign="center"
+                   marginVertical="8"
+            />
+            <style id="new-todo"
+                   fontSize="18"
+                   width="80%"
+                   backgroundColor="#1A1A1A"
+                   color="#FFFFFF"
+                   borderRadius="8"
+                   padding="12"
+                   alignSelf="center"
+                   marginBottom="16"
+            />
             <style id="todo-list"
                    flexDirection="column"
-
                    height="60%"
-                   />
-
-
+                   marginVertical="8"
+            />
+            <style id="toDoItem"
+                   flexDirection="row"
+                   width="90%"
+                   alignSelf="center"
+                   justifyContent="space-between"
+                   backgroundColor="#181818"
+                   borderRadius="8"
+                   padding="12"
+                   marginVertical="6"
+            />
+            <style id="completed"
+                   textDecorationLine="line-through"
+                   color="#555555"
+            />
+            <style id="toggle"
+                   color="#FFFFFF"
+                   fontSize="18"
+                   textAlign="center"
+            />
+            <style id="toggle-completed"
+                   color="#00FFAA"
+                   fontSize="18"
+                   textAlign="center"
+            />
+            <style id="destroy"
+                   color="#FF5555"
+                   fontSize="18"
+                   textAlign="center"
+            />
             <style id="filters"
                    flexDirection="row"
-                   justifyContent="space-evenly"
+                   justifyContent="center"
                    alignSelf="center"
-                   width="30%"
+                   width="60%"
+                   marginVertical="12"
+            />
+            <style id="filter"
+                   marginHorizontal="8"
+                   color="#CCCCCC"
+            />
+            <style id="selected"
+                   color="#00FFAA"
+                   fontWeight="bold"
             />
             <style id="footer"
                    flexDirection="row"
-                   width="80%"
+                   width="90%"
                    justifyContent="space-between"
                    alignSelf="center"
+                   marginTop="16"
             />
-
-            <style id="selected"
-                   color="#FF0000"
-                   />
-
-
-            <style id="toDoItem"
-                   flexDirection="row"
-                    width="60%"
-                    alignSelf="center"
-                   justifyContent="space-between"/>
-
-
-            <style id="toggle-completed"
-
-                   color="#00FF00"
-                   fontSize="20"
-                   textAlign="center"/>
-            <style id="toggle"
-
-                   color="#FFFFFF"
-                   fontSize="20"
-
-                   textAlign="center"
-                   />
-            <style id="destroy"
-                   color="#FF0000"/>
-
-            <style id="completed"
-                   textDecorationLine="line-through"
-                   />
         </styles>
 
         <body id="body" style="screen">

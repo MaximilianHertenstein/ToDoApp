@@ -8,12 +8,12 @@
       style="toDoItem"
 >
 
-    <form>
+    <form style= "toDoItem">
         <text-field
                 placeholder="${toDo.text()}"
                 value="${toDo.text()}"
                 name="updated_text_of_new_todo"
-                style="edit-todo"
+                style="new-todo"
                 autoFocus="true"
                 trigger="blur"
         />
