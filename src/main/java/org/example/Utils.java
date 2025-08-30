@@ -65,19 +65,11 @@ public class Utils {
     }
 
 
-
-    public static String statusToCompletedOrActive(boolean status) {
-        if (status) {
-            return "completed";
-        }
-        return "active";
-    }
-
-    public static String statusToCheckMark(boolean status) {
+    public static String statusToSymbol(boolean status) {
         if (status) {
             return "✓";
         }
-        return " ";
+        return "◯";
     }
 
 

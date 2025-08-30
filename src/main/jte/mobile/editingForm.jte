@@ -13,18 +13,18 @@
                 placeholder="${toDo.text()}"
                 value="${toDo.text()}"
                 name="updated_text_of_new_todo"
-                style="new-todo"
+                style="edit-todo"
                 autoFocus="true"
                 trigger="blur"
         />
-        <text   style = "primary-button"
+        <text   style = "ordinary-text"
                 trigger="press"
                 verb="post"
                 href="/todos/${toDo.id()}/edit"
                 target="${toDo.id()}"
                 action="replace"
 
-        >💾 Save</text>
+        >💾</text>
     </form>
 
 </item>
