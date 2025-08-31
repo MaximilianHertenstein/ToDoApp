@@ -26,7 +26,6 @@ public record View() {
         for (var toDoItem : toDos) {
             println(showToDo(toDoItem));
         }
-        println("\n");
     }
 
     public List<Integer> getIDs(List<ToDo> toDos){
@@ -56,12 +55,12 @@ public record View() {
 
     public int askUntilInputIsId(List<ToDo> toDos) {
 
-        return askUntilElementInList(getIDs(toDos), "Gib die ID des ToDos ein");
+        return askUntilElementInList(getIDs(toDos), "Enter the ID of the ToDo");
     }
 
 
     public int askUntilInputIsSmallerOrEqual(int upperBound) {
-        return askUntilElementInList(numbersFromZeroTo(upperBound),"Gib eine Zahl zwischen 1 und " + upperBound + " ein");
+        return askUntilElementInList(numbersFromZeroTo(upperBound),"Enter a number between 1 and " + upperBound + " ein");
     }
 
 
