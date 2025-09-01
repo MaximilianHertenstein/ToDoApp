@@ -6,7 +6,7 @@ public record ToDo(int id, String text, boolean completed) {
         this(id, text, false);
     }
 
-    public ToDo toggleDone() {
+    public ToDo toggle() {
         return new ToDo(id, text, !completed);
     }
 

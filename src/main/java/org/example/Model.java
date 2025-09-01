@@ -14,7 +14,12 @@ public class Model {
         this.toDos = new ArrayList<>(toDos);
     }
 
-    private List<ToDo> getToDoItems(boolean status) {
+
+
+
+
+
+    public List<ToDo> getToDosCompleted(boolean status) {
         var acc = new ArrayList<ToDo>();
         for (var item : toDos) {
             if (item.completed() == status) {
@@ -24,20 +29,20 @@ public class Model {
         return acc;
     }
 
-    private int nextId() {
-        if (toDos.size() == 0) {
-            return 1;
-        }
-        int max = toDos.get(0).id();
-        for (int i = 1; i < toDos.size(); i++) {
-            if (toDos.get(i).id() > max) {
-                max = toDos.get(i).id();
-            }
-        }
-        return max + 1;
+
+
+    public List<ToDo> getToDosWithFilter(String completed) {
+        return switch (completed) {
+            case "Completed" -> getToDosCompleted(true);
+            case "Active" -> getToDosCompleted(false);
+            case null, default -> toDos;
+        };
     }
 
-    private int idToIndex(int id) {
+
+
+
+    public int idToIndex(int id) {
         for (int i = 0; i < toDos.size(); i++) {
             if (toDos.get(i).id() == id) {
                 return i;
@@ -50,32 +55,31 @@ public class Model {
         return toDos.get(idToIndex(id));
     }
 
-    private List<ToDo> getActiveToDoItems() {
-        return getToDoItems(false);
-    }
 
+
+    public int nextId() {
+        if (toDos.size() == 0) {
+            return 1;
+        }
+        int max = toDos.get(0).id();
+        for (int i = 1; i < toDos.size(); i++) {
+            if (toDos.get(i).id() > max) {
+                max = toDos.get(i).id();
+            }
+        }
+        return max + 1;
+    }
     public void add(String text) {
         toDos.add(new ToDo(nextId(), text));
     }
 
-    public void removeFinishedToDoItems() {
-        toDos = new ArrayList<>(getActiveToDoItems());
-    }
-
-    public List<ToDo> getItemsWithStatus(String status) {
-        return switch (status) {
-            case "Completed" -> getToDoItems(true);
-            case "Active" -> getToDoItems(false);
-            case null, default -> toDos;
-        };
-    }
 
     public void toggle(int id) {
         int index = idToIndex(id);
-        toDos.set(index, toDos.get(index).toggleDone());
+        toDos.set(index, toDos.get(index).toggle());
     }
 
-    public void set(int id, String text) {
+    public void updateText(int id, String text) {
         int index = idToIndex(id);
         toDos.set(index, toDos.get(index).updateText(text));
     }
@@ -85,8 +89,12 @@ public class Model {
         toDos.remove(index);
     }
 
+    public void removeFinishedToDoItems() {
+        toDos = new ArrayList<>(getToDosCompleted(false));
+    }
+
     public String showCountOfActiveToDoItems() {
-        int countOfActiveToDoItems = getActiveToDoItems().size();
+        int countOfActiveToDoItems = getToDosCompleted(false).size();
         var sOrEmpty = "s";
         if (countOfActiveToDoItems == 1) {
             sOrEmpty = "";

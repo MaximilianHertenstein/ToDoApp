@@ -12,7 +12,7 @@ private static void hostCommonRoutes(Javalin webApp, ServerController serverCont
     webApp.post("/todos/{id}/toggleStatus", serverController::toggleStatus);
     webApp.post("/todos/setFilter/{filter}", serverController::setFilter);
     webApp.get("/todos/{id}/edit", serverController::editToDo);
-    webApp.post("/todos/{id}/edit", serverController::updateToDo);
+    webApp.post("/todos/{id}/edit", serverController::updateTextOfToDo);
 
 }
 

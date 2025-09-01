@@ -9,7 +9,7 @@ public class ServerController {
 
 
     public void renderApp(Context ctx) {
-        var toDos = model.getItemsWithStatus(currentFilter);
+        var toDos = model.getToDosWithFilter(currentFilter);
         view.renderApp(ctx, toDos, model.showCountOfActiveToDoItems(), currentFilter);
     }
 
@@ -46,10 +46,10 @@ public class ServerController {
         view.renderEditForm(ctx, model.getToDoItem(idOfToDo));
     }
 
-    public void updateToDo(Context ctx) {
+    public void updateTextOfToDo(Context ctx) {
         var idOfToDo = Integer.parseInt(ctx.pathParam("id"));
         var text_of_new_todo = ctx.formParam("updated_text_of_new_todo");
-        model.set(idOfToDo, text_of_new_todo);
+        model.updateText(idOfToDo, text_of_new_todo);
         view.renderToDo(ctx, model.getToDoItem(idOfToDo));
     }
 
