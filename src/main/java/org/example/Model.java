@@ -5,19 +5,18 @@ import java.util.List;
 
 public class Model {
     private ArrayList<ToDo> toDos;
+    private String selectedFilter = "All";
+
 
     public Model() {
         this.toDos = new ArrayList<>();
+        selectedFilter = "All";
     }
 
-    public Model(List<ToDo> toDos) {
+    public Model(List<ToDo> toDos, String selectedFilter) {
+        this.selectedFilter = selectedFilter;
         this.toDos = new ArrayList<>(toDos);
     }
-
-
-
-
-
 
     public List<ToDo> getToDosCompleted(boolean status) {
         var acc = new ArrayList<ToDo>();
@@ -31,8 +30,8 @@ public class Model {
 
 
 
-    public List<ToDo> getToDosWithFilter(String completed) {
-        return switch (completed) {
+    public List<ToDo> getFilteredToDos() {
+        return switch (selectedFilter) {
             case "Completed" -> getToDosCompleted(true);
             case "Active" -> getToDosCompleted(false);
             case null, default -> toDos;
@@ -100,6 +99,14 @@ public class Model {
             sOrEmpty = "";
         }
         return countOfActiveToDoItems + " item" + sOrEmpty + " left";
+    }
+
+    public void setFilter(String newFilter) {
+        selectedFilter = newFilter;
+    }
+
+    public UIState getUIState(){
+        return new UIState(selectedFilter, getFilteredToDos(), showCountOfActiveToDoItems());
     }
 
 }

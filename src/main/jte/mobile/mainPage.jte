@@ -1,12 +1,8 @@
-<%-- language=HXML --%>
-
 @import org.example.ToDo
-@import java.util.List
+@import org.example.UIState
 
 
-@param List<ToDo> toDos
-@param String countOfActiveToDosDisplay
-@param String appliedFilter
+@param UIState uiState
 <%-- language=HXML --%>
 
 <doc xmlns="https://hyperview.org/hyperview">
@@ -112,9 +108,10 @@
         </styles>
 
         <body id="body" style="screen">
-        @template.mobile.app(toDos = toDos, countOfActiveToDosDisplay = countOfActiveToDosDisplay, appliedFilter = appliedFilter)
+        @template.app(uiState = uiState)
 
         </body>
-                   paddingVertical="20"
+
     </screen>
+
 </doc>

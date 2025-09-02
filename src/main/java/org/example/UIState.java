@@ -1,4 +1,6 @@
-package org.example
+package org.example;
 
-class UIState {
+import java.util.List;
+
+public record UIState(String currentFilter, List<ToDo> selectedToDos ,String displayOfActiveToDos) {
 }

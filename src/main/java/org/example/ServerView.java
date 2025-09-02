@@ -3,57 +3,64 @@ package org.example;
 import gg.jte.CodeResolver;
 import gg.jte.ContentType;
 import gg.jte.TemplateEngine;
+import gg.jte.output.StringOutput;
 import gg.jte.resolve.DirectoryCodeResolver;
 import io.javalin.http.Context;
 
 import java.nio.file.Path;
-import java.util.List;
-import java.util.Map;
 
-public class ServerViewAlt {
+public class ServerView {
 
+    TemplateEngine htmlTemplateEngine;
+    TemplateEngine hxmlTemplateEngine;
 
-    CodeResolver codeResolver = new DirectoryCodeResolver(Path.of("src/main/jte")); // This is the directory where your .jte files are located.
-    TemplateEngine htmlTemplateEngine = TemplateEngine.create(codeResolver, ContentType.Html);
-    TemplateEngine xmlTemplateEngine = TemplateEngine.create(codeResolver, ContentType.Plain);
+    public ServerView() {
+        CodeResolver htmlCodeResolver = new DirectoryCodeResolver(Path.of("src/main/jte/web"));
+        CodeResolver hxmlCodeResolver = new DirectoryCodeResolver(Path.of("src/main/jte/mobile"));
+        htmlTemplateEngine = TemplateEngine.create(htmlCodeResolver, ContentType.Html);
+        hxmlTemplateEngine = TemplateEngine.create(hxmlCodeResolver, ContentType.Plain);
+    }
 
-
-
-
-    private void renderTemplate(Context ctx, String templateName, Map<String, Object> map){
-        var folder = "web/";
-        boolean acceptsHXML = ctx.header("Accept").contains("hyperview");
-        if (acceptsHXML) {
-            folder = "mobile/";
-            ctx.contentType("application/vnd.hyperview+xml");
-
+    public String renderToString(String templateName, Object model, boolean useHXML) {
+        StringOutput output = new StringOutput();
+        var templateEngine = htmlTemplateEngine;
+        if (useHXML) {
+            templateEngine = hxmlTemplateEngine;
         }
-        var newCTX = ctx.render(folder + templateName, map);
-        if (acceptsHXML) {
-            newCTX.contentType("application/vnd.hyperview+xml");
+        templateEngine.render(templateName + ".jte", model, output);
+        return output.toString();
+    }
+
+    public String acceptHeaderToContentType(boolean useHXML) {
+        if (useHXML) {
+            return "application/vnd.hyperview+xml";
+        } else {
+            return "text/html";
         }
     }
 
+    private void renderAndSend(Context ctx, Object object, String templateName) {
+        var useHXML = ctx.header("Accept") != null && ctx.header("Accept").contains("hyperview");
+        var content = renderToString(templateName, object, useHXML);
+        ctx.contentType(acceptHeaderToContentType(useHXML));
+        ctx.result(content);
+    }
 
-    public void renderApp(Context ctx, List<ToDo> toDos, String countOfActiveToDosDisplay, String appliedFilter) {
-        var map = Map.of("toDos", toDos, "countOfActiveToDosDisplay", countOfActiveToDosDisplay, "appliedFilter",
-                appliedFilter);
-        var templateName = "mainPage.jte";
-        if (ctx.queryParam("replace")!= null || ctx.header("HX-Request") != null)  {
-            templateName = "app.jte";
+    public void showApp(Context ctx, UIState uiState) {
+        var partial = ctx.header("HX-Request") != null || ctx.queryParam("replace") != null;
+        var templateName = "mainPage";
+        if (partial) {
+            templateName = "app";
         }
-
-        renderTemplate(ctx, templateName, map);
-
+        renderAndSend(ctx, uiState, templateName);
     }
 
-    public void renderEditForm(Context ctx, ToDo toDo) {
-        renderTemplate(ctx, "editingForm.jte", Map.of("toDo", toDo));
+    public void showToDo(Context ctx, ToDo toDo) {
+        renderAndSend(ctx, toDo, "singleItem");
     }
 
-    public void renderToDo(Context ctx, ToDo toDo) {
-        renderTemplate(ctx, "singleItem.jte", Map.of("toDo", toDo));
+    public void showEditForm(Context ctx, ToDo toDo) {
+        renderAndSend(ctx, toDo, "editingForm");
     }
-
 
 }

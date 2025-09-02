@@ -12,7 +12,7 @@ import io.javalin.rendering.template.JavalinJte;
 import java.nio.file.Path;
 
 public class Utils {
-    private static void configureJavalinBasic(JavalinConfig javalinConfig) {
+    public static void configureJavalin(JavalinConfig javalinConfig) {
 
         javalinConfig.bundledPlugins.enableCors(cors -> {
             //it.allowHost("http://localhost:19006");
@@ -26,20 +26,7 @@ public class Utils {
 
 
     }
-    public static void configureJavalinForWeb(JavalinConfig javalinConfig){
-        configureJavalinBasic(javalinConfig);
-        javalinConfig.fileRenderer(new JavalinJte());
-    }
 
-
-
-    public static void configureJavalinForMobile(JavalinConfig javalinConfig){
-        configureJavalinBasic(javalinConfig);
-        //javalinConfig.staticFiles.add("/public");
-        CodeResolver codeResolver = new DirectoryCodeResolver(Path.of("src/main/jte")); // This is the directory where your .jte files are located.
-        var templateEngine = TemplateEngine.create(codeResolver, ContentType.Plain);
-        javalinConfig.fileRenderer(new JavalinJte(templateEngine));
-    }
 
 
     public static String statusToCompleted(boolean status) {

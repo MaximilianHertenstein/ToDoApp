@@ -73,7 +73,7 @@ public record View() {
 
     public int askUntilInputIsId(List<ToDo> toDos) {
 
-        return askUntilElementInList(getIDs(toDos), "Enter the ID of the ToDo");
+        return askUntilElementInList(getIDs(toDos), "Enter the ID of an visible ToDo!");
     }
 
 
@@ -82,10 +82,10 @@ public record View() {
     }
 
 
-    public int showMainMenuAskForOption(List<ToDo> selectedToDos, String displayOfActiveToDos, String currentFilter) {
-        printToDos(selectedToDos);
-        println(displayOfActiveToDos);
-        println("Current Filter: " + currentFilter);
+    public int showMainMenuAskForOption(UIState uiState) {
+        printToDos(uiState.selectedToDos());
+        println(uiState.displayOfActiveToDos());
+        println("Current Filter: " + uiState.currentFilter());
         println("\nWhat do you want to do?  \n 1 Add ToDo \n 2 Edit ToDo \n 3 Delete all completed ToDos \n 4 Change ToDo filter \n 5 Quit the app");
         return askUntilInputIsSmallerOrEqual(5);
     }

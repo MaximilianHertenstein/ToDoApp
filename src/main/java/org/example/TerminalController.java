@@ -6,7 +6,7 @@ public class TerminalController {
     View view = new View();
 
     public void updateItem() {
-        var id = view.askUntilInputIsId(model.getToDosWithFilter("All"));
+        var id = view.askUntilInputIsId(model.getFilteredToDos());
         var updateOperation = view.askForUpdateOperation();
         switch (updateOperation) {
             case 1 -> {
@@ -20,9 +20,8 @@ public class TerminalController {
 
     public void runApp() {
         var choice = -1;
-        var selectedFilter = "All";
         while ((choice != 5)) {
-            choice = view.showMainMenuAskForOption(model.getToDosWithFilter(selectedFilter), model.showCountOfActiveToDoItems(), selectedFilter);
+            choice = view.showMainMenuAskForOption(model.getUIState());
             switch (choice) {
                 case 1 -> {
                     var textOfNewToDo = view.askForNewToDo();
@@ -30,7 +29,7 @@ public class TerminalController {
                 }
                 case 2 -> updateItem();
                 case 3 -> model.removeFinishedToDoItems();
-                case 4 -> selectedFilter = view.askForFilter();
+                case 4 -> model.setFilter(view.askForFilter());
             }
         }
     }

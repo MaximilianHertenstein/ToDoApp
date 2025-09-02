@@ -1,38 +1,63 @@
-@import org.example.ToDo
+@import org.example.UIState
 @import org.example.Utils
 @import java.util.List
 
 
-@param List<ToDo> toDos
-@param String countOfActiveToDosDisplay
-@param String appliedFilter
+@param UIState uiState
 
+<%--hx-trigger="keyup[keyCode==13]"--%>
 
-<section class="todoapp" id="app">
+<section class="todoapp" id="todoapp">
     <header class="header">
         <h1>todos</h1>
-
-        <input hx-post="/todos/new" hx-target="body" hx-trigger="keyup[keyCode==13]" type="text" class="new-todo" placeholder="What needs to be done?" name="text_of_new_todo"
-               autofocus="${true}">
+        <%--        <form action="/todos/new" method="post">--%>
+        <form>
+            <input type="text"
+                   class="new-todo"
+                   placeholder="What needs to be done?"
+                   name="text_of_new_todo"
+                   autofocus="${true}">
+            <button type="submit"
+                    style="display:none;"
+                    hx-post="/todos/new"
+                    hx-target="#todoapp"
+                    hx-swap="outerHTML"
+            >
+                Add
+            </button>
+        </form>
     </header>
 
     <main>
         <ul class="todo-list">
-            @for(var toDo: toDos)
-                @template.web.singleItem(toDo = toDo)
+            @for(var toDo: uiState.selectedToDos())
+                @template.singleItem(toDo = toDo)
             @endfor
         </ul>
     </main>
-    <footer class="footer"><span class="todo-count"><strong>${countOfActiveToDosDisplay}</strong></span>
+    <footer class="footer">
+        <span class="todo-count">
+            <strong>${uiState.displayOfActiveToDos()}</strong>
+        </span>
 
 
         <ul class="filters">
             @for(var filter: List.of("All", "Active", "Completed"))
-                <li><a hx-post="/todos/setFilter/${filter}" hx-target="body"
-                       class="${Utils.computeFilterClass(appliedFilter, filter)}">${filter}</a></li>
+                <li>
+                    <a hx-post="/todos/setFilter/${filter}"
+                       hx-target="body"
+                       class="${Utils.computeFilterClass(uiState.currentFilter(), filter)}">
+                        ${filter}
+                    </a>
+                </li>
             @endfor
         </ul>
 
-        <button class="clear-completed" hx-delete="/todos/completed" hx-target="body" >Clear completed</button>
+        <button
+                class="clear-completed"
+                hx-post="/todos/clearCompleted"
+                hx-target="body">
+            Clear completed
+        </button>
     </footer>
-    </section>
+</section>

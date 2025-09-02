@@ -1,10 +1,7 @@
-@import org.example.ToDo
-@import java.util.List
+@import org.example.UIState
 
 
-@param List<ToDo> toDos
-@param String countOfActiveToDosDisplay
-@param String appliedFilter
+@param UIState uiState
 
 
 <!DOCTYPE html>
@@ -20,7 +17,7 @@
 
 <body>
 
-@template.web.app(toDos = toDos, countOfActiveToDosDisplay = countOfActiveToDosDisplay, appliedFilter = appliedFilter)
+@template.app(uiState = uiState)
 </body>
 
 </html>

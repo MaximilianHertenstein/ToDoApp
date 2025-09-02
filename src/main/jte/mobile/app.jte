@@ -1,11 +1,10 @@
 @import org.example.ToDo
+@import org.example.UIState
 @import org.example.Utils
 @import java.util.List
 
 
-@param List<ToDo> toDos
-@param String countOfActiveToDosDisplay
-@param String appliedFilter
+@param UIState uiState
 
 
 <view xmlns="https://hyperview.org/hyperview" style="todoapp" id="app">
@@ -24,19 +23,19 @@
     </header>
 
     <list style="todo-list">
-        @for(var toDo: toDos)
-            @template.mobile.singleItem(toDo = toDo)
+        @for(var toDo: uiState.selectedToDos())
+            @template.singleItem(toDo = toDo)
         @endfor
     </list>
 
     <view style="footer">
-        <text style="ordinary-text">${countOfActiveToDosDisplay}</text>
+        <text style="ordinary-text">${uiState.displayOfActiveToDos()}</text>
 
         <view style="filters">
             @for(var filter: List.of("All", "Active", "Completed"))
                 <text verb="post" href="/todos/setFilter/${filter}?replace=true" target="body"
                       action="replace-inner"
-                      style="filter ordinary-text ${Utils.computeFilterClass(appliedFilter, filter)} ">${filter}</text>
+                      style="filter ordinary-text ${Utils.computeFilterClass(uiState.currentFilter(), filter)} ">${filter}</text>
             @endfor
         </view>
 

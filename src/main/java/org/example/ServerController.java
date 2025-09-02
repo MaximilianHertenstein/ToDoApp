@@ -5,12 +5,11 @@ import io.javalin.http.Context;
 public class ServerController {
     Model model = new Model();
     ServerView view = new ServerView();
-    String currentFilter = "All";
+
 
 
     public void renderApp(Context ctx) {
-        var toDos = model.getToDosWithFilter(currentFilter);
-        view.renderApp(ctx, toDos, model.showCountOfActiveToDoItems(), currentFilter);
+        view.showApp(ctx, model.getUIState());
     }
 
     public void addToDo(Context ctx) {
@@ -37,20 +36,21 @@ public class ServerController {
     }
 
     public void setFilter(Context ctx) {
-        currentFilter = ctx.pathParam("filter");
+        var nextFilter  = ctx.pathParam("filter");
+        model.setFilter(nextFilter);
         renderApp(ctx);
     }
 
     public void editToDo(Context ctx) {
         var idOfToDo = Integer.parseInt(ctx.pathParam("id"));
-        view.renderEditForm(ctx, model.getToDoItem(idOfToDo));
+        view.showEditForm(ctx, model.getToDoItem(idOfToDo));
     }
 
     public void updateTextOfToDo(Context ctx) {
         var idOfToDo = Integer.parseInt(ctx.pathParam("id"));
         var text_of_new_todo = ctx.formParam("updated_text_of_new_todo");
         model.updateText(idOfToDo, text_of_new_todo);
-        view.renderToDo(ctx, model.getToDoItem(idOfToDo));
+        view.showToDo(ctx, model.getToDoItem(idOfToDo));
     }
 
 }
