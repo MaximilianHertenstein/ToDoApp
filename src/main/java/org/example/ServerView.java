@@ -1,26 +1,37 @@
 package org.example;
 
-
+import gg.jte.CodeResolver;
+import gg.jte.ContentType;
+import gg.jte.TemplateEngine;
+import gg.jte.resolve.DirectoryCodeResolver;
 import io.javalin.http.Context;
 
+import java.nio.file.Path;
 import java.util.List;
 import java.util.Map;
 
+public class ServerViewAlt {
 
-public class ServerView  {
 
-     private void renderTemplate(Context ctx, String templateName, Map<String, Object> map){
-         var folder = "web/";
-         boolean acceptsHXML = ctx.header("Accept").contains("hyperview");
-         if (acceptsHXML) {
-             folder = "mobile/";
-             ctx.contentType("application/vnd.hyperview+xml");
+    CodeResolver codeResolver = new DirectoryCodeResolver(Path.of("src/main/jte")); // This is the directory where your .jte files are located.
+    TemplateEngine htmlTemplateEngine = TemplateEngine.create(codeResolver, ContentType.Html);
+    TemplateEngine xmlTemplateEngine = TemplateEngine.create(codeResolver, ContentType.Plain);
 
-         }
-         var newCTX = ctx.render(folder + templateName, map);
-         if (acceptsHXML) {
-             newCTX.contentType("application/vnd.hyperview+xml");
-         }
+
+
+
+    private void renderTemplate(Context ctx, String templateName, Map<String, Object> map){
+        var folder = "web/";
+        boolean acceptsHXML = ctx.header("Accept").contains("hyperview");
+        if (acceptsHXML) {
+            folder = "mobile/";
+            ctx.contentType("application/vnd.hyperview+xml");
+
+        }
+        var newCTX = ctx.render(folder + templateName, map);
+        if (acceptsHXML) {
+            newCTX.contentType("application/vnd.hyperview+xml");
+        }
     }
 
 
@@ -43,5 +54,6 @@ public class ServerView  {
     public void renderToDo(Context ctx, ToDo toDo) {
         renderTemplate(ctx, "singleItem.jte", Map.of("toDo", toDo));
     }
+
 
 }
