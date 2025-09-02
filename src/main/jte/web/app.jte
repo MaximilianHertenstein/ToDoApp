@@ -31,7 +31,7 @@
     <main>
         <ul class="todo-list">
             @for(var toDo: uiState.selectedToDos())
-                @template.singleItem(toDo = toDo)
+                @template.toDo(toDo = toDo)
             @endfor
         </ul>
     </main>

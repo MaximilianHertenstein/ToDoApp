@@ -1,13 +1,17 @@
 import io.javalin.Javalin;
 import org.example.ServerController;
+import org.example.ServerView;
 import org.example.Utils;
 
 void main() {
+
+    //var serverView = new ServerView();
+    //serverView.renderToString()
     runApp();
 }
 
-private static void runApp() {
-    var app =  Javalin.create();
+void runApp() {
+    var app =  Javalin.create(Utils::configureJavalin);
     var serverController = new ServerController();
     app.get("/todos", serverController::renderApp);
     app.post("/todos/new", serverController::addToDo);

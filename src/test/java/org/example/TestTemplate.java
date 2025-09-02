@@ -24,7 +24,7 @@ class SingleItemTemplateTest {
         ToDo todo = new ToDo(1, "Testaufgabe", false);
 
         StringOutput output = new StringOutput();
-        templateEngine.render("web/singleItem.jte", todo, output);
+        templateEngine.render("web/toDo.jte", todo, output);
 
         String html = output.toString();
         println(output);
