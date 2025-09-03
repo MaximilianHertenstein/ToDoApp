@@ -24,7 +24,7 @@
 
     <list style="todo-list">
         @for(var toDo: uiState.selectedToDos())
-            @template.singleItem(toDo = toDo)
+            @template.toDo(toDo = toDo)
         @endfor
     </list>
 

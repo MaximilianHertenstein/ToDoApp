@@ -1,29 +1,49 @@
+package org.example;
+
+import gg.jte.ContentType;
+import gg.jte.TemplateEngine;
+import gg.jte.output.StringOutput;
+import gg.jte.resolve.DirectoryCodeResolver;
 import io.javalin.Javalin;
-import org.example.ServerController;
-import org.example.ServerView;
-import org.example.Utils;
+import io.javalin.config.JavalinConfig;
+import io.javalin.plugin.bundled.CorsPluginConfig;
+import org.example.*;
 
-void main() {
+import java.util.List;
 
-    //var serverView = new ServerView();
-    //serverView.renderToString()
-    runApp();
+import static java.io.IO.println;
+
+
+class ServerMain {
+
+
+
+    public static void main(String[] args) {
+
+
+
+        var serverView = new ServerView();
+        var uiState = new UIState("Completed", List.of(), "0 items left");
+        println(serverView.renderToString("mainPage", uiState, false));
+
+    }
+
+
+
+    void runApp() {
+        var app =  Javalin.create(Utils::configureJavalin);
+        var serverController = new ServerController();
+        app.get("/todos", serverController::renderApp);
+        app.post("/todos/new", serverController::addToDo);
+        app.post("/todos/{id}/toggleStatus", serverController::toggleStatus);
+        app.post("/todos/setFilter/{filter}", serverController::setFilter);
+        app.get("/todos/{id}/edit", serverController::editToDo);
+        app.post("/todos/{id}/edit", serverController::updateTextOfToDo);
+        app.post("/todos/{id}/delete", serverController::deleteToDo);
+        app.post("/todos/clearCompleted", serverController::deleteCompletedToDos);
+        app.start();
+    }
 }
-
-void runApp() {
-    var app =  Javalin.create(Utils::configureJavalin);
-    var serverController = new ServerController();
-    app.get("/todos", serverController::renderApp);
-    app.post("/todos/new", serverController::addToDo);
-    app.post("/todos/{id}/toggleStatus", serverController::toggleStatus);
-    app.post("/todos/setFilter/{filter}", serverController::setFilter);
-    app.get("/todos/{id}/edit", serverController::editToDo);
-    app.post("/todos/{id}/edit", serverController::updateTextOfToDo);
-    app.post("/todos/{id}/delete", serverController::deleteToDo);
-    app.post("/todos/clearCompleted", serverController::deleteCompletedToDos);
-    app.start();
-}
-
 
 //private static void runWebApp(){
 //    var serverController = new ServerController();

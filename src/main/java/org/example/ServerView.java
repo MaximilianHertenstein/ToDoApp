@@ -1,6 +1,5 @@
 package org.example;
 
-import gg.jte.CodeResolver;
 import gg.jte.ContentType;
 import gg.jte.TemplateEngine;
 import gg.jte.output.StringOutput;
@@ -15,8 +14,8 @@ public class ServerView {
     TemplateEngine hxmlTemplateEngine;
 
     public ServerView() {
-        CodeResolver htmlCodeResolver = new DirectoryCodeResolver(Path.of("src/main/jte/web"));
-        CodeResolver hxmlCodeResolver = new DirectoryCodeResolver(Path.of("src/main/jte/mobile"));
+        DirectoryCodeResolver htmlCodeResolver = new DirectoryCodeResolver(Path.of("src/main/jte/web"));
+        DirectoryCodeResolver hxmlCodeResolver = new DirectoryCodeResolver(Path.of("src/main/jte/mobile"));
         htmlTemplateEngine = TemplateEngine.create(htmlCodeResolver, ContentType.Html);
         hxmlTemplateEngine = TemplateEngine.create(hxmlCodeResolver, ContentType.Plain);
     }
@@ -56,7 +55,7 @@ public class ServerView {
     }
 
     public void showToDo(Context ctx, ToDo toDo) {
-        renderAndSend(ctx, toDo, "singleItem");
+        renderAndSend(ctx, toDo, "toDo");
     }
 
     public void showEditForm(Context ctx, ToDo toDo) {

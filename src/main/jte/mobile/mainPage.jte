@@ -6,7 +6,7 @@
 <%-- language=HXML --%>
 
 <doc xmlns="https://hyperview.org/hyperview">
-    <screen xmlns="https://hyperview.org/hyperview">
+    <screen>
         <styles>
             <style id="screen"
                    backgroundColor="#000000"
@@ -67,16 +67,6 @@
             <style id="completed"
                    textDecorationLine="line-through"
                    color="#555555"
-            />
-            <style id="toggle"
-                   color="#FFFFFF"
-                   fontSize="18"
-                   textAlign="center"
-            />
-            <style id="toggle-completed"
-                   color="#00FFAA"
-                   fontSize="18"
-                   textAlign="center"
             />
             <style id="destroy"
                    color="#FF5555"
