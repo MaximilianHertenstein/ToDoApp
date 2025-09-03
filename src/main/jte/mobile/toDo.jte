@@ -7,15 +7,11 @@
       id="${toDo.id()}"
       key="${toDo.id()}"
       style="toDoItem"
+      verb="post"
+      href="/todos/${toDo.id()}/toggleStatus?replace=true"
+      target="body"
+      action="replace-inner">
 >
-    <text
-            style="${Utils.computeToggleClass(toDo.completed())}"
-          verb="post"
-          href="/todos/${toDo.id()}/toggleStatus?replace=true"
-          target="body"
-          action="replace-inner">
-        ${Utils.statusToSymbol(toDo.completed())}
-    </text>
     <text
           href="/todos/${toDo.id()}/edit"
           trigger="press"
@@ -28,6 +24,6 @@
               verb="post"
               href="/todos/${toDo.id()}/delete?replace=true"
               target="body"
-              action="replace-inner">×</text>
+              action="replace-inner">X</text>
 
 </item>
