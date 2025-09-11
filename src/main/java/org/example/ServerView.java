@@ -1,65 +1,39 @@
 package org.example;
 
-import gg.jte.ContentType;
-import gg.jte.TemplateEngine;
-import gg.jte.output.StringOutput;
-import gg.jte.resolve.DirectoryCodeResolver;
+
 import io.javalin.http.Context;
 
-import java.nio.file.Path;
 
 public class ServerView {
 
-    TemplateEngine htmlTemplateEngine;
-    TemplateEngine hxmlTemplateEngine;
+     TemplateRenderer templateRenderer = new TemplateRenderer();
 
-    public ServerView() {
-        DirectoryCodeResolver htmlCodeResolver = new DirectoryCodeResolver(Path.of("src/main/jte/web"));
-        DirectoryCodeResolver hxmlCodeResolver = new DirectoryCodeResolver(Path.of("src/main/jte/mobile"));
-        htmlTemplateEngine = TemplateEngine.create(htmlCodeResolver, ContentType.Html);
-        hxmlTemplateEngine = TemplateEngine.create(hxmlCodeResolver, ContentType.Plain);
+    private static boolean shouldRespondHXML(Context ctx) {
+        return ctx.header("Accept") != null && ctx.header("Accept").contains("hyperview");
     }
 
-    public String renderToString(String templateName, Object model, boolean useHXML) {
-        StringOutput output = new StringOutput();
-        var templateEngine = htmlTemplateEngine;
-        if (useHXML) {
-            templateEngine = hxmlTemplateEngine;
+
+    private void setContentTypeAndSend(Context ctx, String content, boolean useHXML) {
+        var contentType = "text/html";
+        if (useHXML){
+            contentType = "application/vnd.hyperview+xml";
         }
-        templateEngine.render(templateName + ".jte", model, output);
-        return output.toString();
-    }
-
-    public String acceptHeaderToContentType(boolean useHXML) {
-        if (useHXML) {
-            return "application/vnd.hyperview+xml";
-        } else {
-            return "text/html";
-        }
-    }
-
-    private void renderAndSend(Context ctx, Object object, String templateName) {
-        var useHXML = ctx.header("Accept") != null && ctx.header("Accept").contains("hyperview");
-        var content = renderToString(templateName, object, useHXML);
-        ctx.contentType(acceptHeaderToContentType(useHXML));
+        ctx.contentType(contentType);
         ctx.result(content);
     }
 
     public void showApp(Context ctx, UIState uiState) {
         var partial = ctx.header("HX-Request") != null || ctx.queryParam("replace") != null;
-        var templateName = "mainPage";
-        if (partial) {
-            templateName = "app";
-        }
-        renderAndSend(ctx, uiState, templateName);
+        var useHXML = shouldRespondHXML(ctx);
+        var content = templateRenderer.renderAppToString(uiState, partial, useHXML);
+        setContentTypeAndSend(ctx,content,useHXML);
     }
 
-    public void showToDo(Context ctx, ToDo toDo) {
-        renderAndSend(ctx, toDo, "toDo");
+    public void showToDo(Context ctx, ToDo toDo, boolean editing) {
+        var useHXML = shouldRespondHXML(ctx);
+        var content = templateRenderer.renderToDoToString(toDo, editing, useHXML);
+        setContentTypeAndSend(ctx,content,useHXML);
     }
 
-    public void showEditForm(Context ctx, ToDo toDo) {
-        renderAndSend(ctx, toDo, "editingForm");
-    }
 
 }

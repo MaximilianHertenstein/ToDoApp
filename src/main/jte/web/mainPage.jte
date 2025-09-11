@@ -9,15 +9,15 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="/webjars/todomvc-app-css/2.4.1/index.css" type="text/css">
+   <link rel="stylesheet" href="/webjars/todomvc-app-css/2.4.1/index.css" type="text/css">
     <script src="/webjars/htmx.org/2.0.6/dist/htmx.min.js"></script>
     <title>ToDo-App</title>
 
 </head>
 
 <body>
-
-@template.app(uiState = uiState)
-</body>
-
+    <section class="todoapp" id="todoapp">
+    @template.app(uiState = uiState)
+        </section>
+    </body>
 </html>

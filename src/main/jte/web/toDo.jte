@@ -10,9 +10,8 @@
            type="checkbox"
            checked="${toDo.completed()}"
            hx-post="todos/${toDo.id()}/toggleStatus"
-           hx-target="body"
-           hx-trigger="click"
-           hx-swap="outerHTML"/>
+           hx-target="#todoapp"
+          />
 
     <label hx-get="/todos/${toDo.id()}/edit"
            hx-target="#todo${toDo.id()}"
@@ -20,6 +19,7 @@
     </label>
     <button class="destroy"
             hx-post="todos/${toDo.id()}/delete"
-            hx-target="body">
+            hx-target="#todoapp"
+            >
     </button>
 </li>

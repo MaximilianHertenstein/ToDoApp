@@ -5,14 +5,13 @@
 
 @param UIState uiState
 
-<%--hx-trigger="keyup[keyCode==13]"--%>
 
-<section class="todoapp" id="todoapp">
+
     <header class="header">
         <h1>todos</h1>
         <%--        <form action="/todos/new" method="post">--%>
         <form>
-            <input type="text"
+            <input
                    class="new-todo"
                    placeholder="What needs to be done?"
                    name="text_of_new_todo"
@@ -21,7 +20,6 @@
                     style="display:none;"
                     hx-post="/todos/new"
                     hx-target="#todoapp"
-                    hx-swap="outerHTML"
             >
                 Add
             </button>
@@ -45,7 +43,7 @@
             @for(var filter: List.of("All", "Active", "Completed"))
                 <li>
                     <a hx-post="/todos/setFilter/${filter}"
-                       hx-target="body"
+                       hx-target="#todoapp"
                        class="${Utils.computeFilterClass(uiState.currentFilter(), filter)}">
                         ${filter}
                     </a>
@@ -55,9 +53,8 @@
 
         <button
                 class="clear-completed"
-                hx-post="/todos/clearCompleted"
-                hx-target="body">
+                hx-post="/todos/clearCompletedToDos"
+                hx-target="#todoapp">
             Clear completed
         </button>
     </footer>
-</section>

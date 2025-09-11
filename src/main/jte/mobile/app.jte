@@ -39,7 +39,7 @@
             @endfor
         </view>
 
-        <text style="ordinary-text" verb="post" href="/todos/clearCompleted?replace=true" target="body"
+        <text style="ordinary-text" verb="post" href="/todos/clearCompletedToDos?replace=true" target="body"
               action="replace-inner">Clear completed</text>
     </view>
 </view>

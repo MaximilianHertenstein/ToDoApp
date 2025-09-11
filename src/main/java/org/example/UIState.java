@@ -2,5 +2,5 @@ package org.example;
 
 import java.util.List;
 
-public record UIState(String currentFilter, List<ToDo> selectedToDos ,String displayOfActiveToDos) {
+public record UIState(String selectedFilter, List<ToDo> selectedToDos ,String displayOfActiveToDos) {
 }

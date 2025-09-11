@@ -10,7 +10,7 @@ import static java.io.IO.readln;
 
 public record View() {
 
-    private String numberToFilter(int number) {
+    public String numberToFilter(int number) {
         return switch (number) {
             case 1 -> "All";
             case 2 -> "Active";
@@ -20,7 +20,7 @@ public record View() {
     }
 
 
-    private String showToDo(ToDo toDo) {
+    public String showToDo(ToDo toDo) {
         var done = "❌";
         if (toDo.completed()) {
             done = "✓";
@@ -35,7 +35,7 @@ public record View() {
         }
     }
 
-    private List<Integer> getIDs(List<ToDo> toDos) {
+    public List<Integer> getIDs(List<ToDo> toDos) {
         var ids = new ArrayList<Integer>();
         for (var toDoItem : toDos) {
             ids.add(toDoItem.id());
@@ -43,7 +43,7 @@ public record View() {
         return ids;
     }
 
-    private List<Integer> numbersFromOneTo(int number) {
+    public List<Integer> numbersFromOneTo(int number) {
         var smallerNumbersAsStrings = new ArrayList<Integer>();
         for (int i = 1; i <= number; i++) {
             smallerNumbersAsStrings.add(i);
@@ -62,7 +62,7 @@ public record View() {
     }
 
 
-    private int askUntilElementInList(List<Integer> elems, String prompt) {
+    public int askUntilElementInList(List<Integer> elems, String prompt) {
         var input = "";
         while (!NumberUtils.isCreatable(input) || !elems.contains(Integer.parseInt(input))) {
             println(prompt);
@@ -77,7 +77,7 @@ public record View() {
     }
 
 
-    private int askUntilInputIsSmallerOrEqual(int upperBound) {
+    public int askUntilInputIsSmallerOrEqual(int upperBound) {
         return askUntilElementInList(numbersFromOneTo(upperBound), "Enter a number between 1 and " + upperBound);
     }
 
@@ -85,7 +85,7 @@ public record View() {
     public int showMainMenuAskForOption(UIState uiState) {
         printToDos(uiState.selectedToDos());
         println(uiState.displayOfActiveToDos());
-        println("Current Filter: " + uiState.currentFilter());
+        println("Current Filter: " + uiState.selectedFilter());
         println("\nWhat do you want to do?  \n 1 Add ToDo \n 2 Edit ToDo \n 3 Delete all completed ToDos \n 4 Change ToDo filter \n 5 Quit the app");
         return askUntilInputIsSmallerOrEqual(5);
     }
