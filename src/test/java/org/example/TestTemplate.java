@@ -5,12 +5,8 @@ import gg.jte.ContentType;
 import gg.jte.TemplateEngine;
 import gg.jte.output.StringOutput;
 import gg.jte.resolve.DirectoryCodeResolver;
-import io.javalin.Javalin;
 import org.junit.jupiter.api.Test;
-
-import java.io.StringWriter;
 import java.nio.file.Path;
-import java.util.List;
 
 import static java.io.IO.println;
 import static org.junit.jupiter.api.Assertions.*;

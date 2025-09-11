@@ -1,9 +1,7 @@
 package org.example;
 
 
-import io.javalin.Javalin;
 import io.javalin.config.JavalinConfig;
-import io.javalin.plugin.bundled.CorsPluginConfig;
 
 
 

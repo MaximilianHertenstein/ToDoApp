@@ -12,7 +12,7 @@ class ModelTest {
     void constructor_initializesCorrectly() {
         Model model = new Model();
         assertEquals("All", model.getFilteredToDos().isEmpty() ? "All" : model.getFilteredToDos().get(0).text());
-        Model model2 = new Model(List.of(new ToDo(1, "Test", false)), "Active");
+        
     }
     @Test
     void getToDosCompleted() {

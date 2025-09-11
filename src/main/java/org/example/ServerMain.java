@@ -2,7 +2,6 @@ package org.example;
 
 import io.javalin.Javalin;
 
-import static java.io.IO.println;
 
 
 class ServerMain {
