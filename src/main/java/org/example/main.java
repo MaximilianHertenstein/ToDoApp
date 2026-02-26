@@ -3,7 +3,7 @@ package org.example;
 
 
 class Main {
-    public static void main() {
+      void main() {
         var controller = new TerminalController();
         controller.runApp();
 

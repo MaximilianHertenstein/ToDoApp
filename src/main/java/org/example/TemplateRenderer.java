@@ -19,7 +19,7 @@ public class TemplateRenderer {
         hxmlTemplateEngine = TemplateEngine.create(hxmlCodeResolver, ContentType.Plain);
     }
 
-    public String renderToString(Object model, String templateName, boolean useHXML) {
+    public <T> String renderToString(T model, String templateName, boolean useHXML) {
         StringOutput output = new StringOutput();
         var templateEngine = htmlTemplateEngine;
         if (useHXML) {

@@ -5,8 +5,9 @@ import org.apache.commons.lang3.math.NumberUtils;
 import java.util.ArrayList;
 import java.util.List;
 
-import static java.io.IO.println;
-import static java.io.IO.readln;
+
+import static java.lang.IO.println;
+import static java.lang.IO.readln;
 
 public record View() {
 

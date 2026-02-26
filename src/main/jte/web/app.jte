@@ -44,7 +44,7 @@
                 <li>
                     <a hx-post="/todos/setFilter/${filter}"
                        hx-target="#todoapp"
-                       class="${Utils.computeFilterClass(uiState.currentFilter(), filter)}">
+                       class="${Utils.computeFilterClass(uiState.selectedFilter(), filter)}">
                         ${filter}
                     </a>
                 </li>
