@@ -8,7 +8,7 @@ class ServerMain {
 
 
 
-    public static void main(String[] args) {
+     static void main() {
 
 
         runApp();
@@ -24,18 +24,7 @@ class ServerMain {
     static void runApp() {
 
 
-        var app =  Javalin.create(Utils::configureJavalin);
-
-//        var app =  Javalin.create(Utils::configureJavalin);
-        var serverController = new ServerController();
-        app.get("/todos", serverController::showApp);
-        app.post("/todos/new", serverController::addToDo);
-        app.post("/todos/{id}/toggleStatus", serverController::toggleStatus);
-        app.post("/todos/setFilter/{filter}", serverController::setFilter);
-        app.get("/todos/{id}/edit", serverController::showEditForm);
-        app.post("/todos/{id}/edit", serverController::updateTextOfToDo);
-        app.post("/todos/{id}/delete", serverController::deleteToDo);
-        app.post("/todos/clearCompletedToDos", serverController::clearCompletedToDos);
+        var app =  Javalin.create(JavalinConfigurator::configureJavalin);
         app.start();
     }
 }

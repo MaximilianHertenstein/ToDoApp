@@ -21,9 +21,7 @@ public class Utils {
 //
 //    }
 
-    public static void configureJavalin(JavalinConfig javalinConfig) {
-        javalinConfig.staticFiles.enableWebjars();
-    }
+
 
 
 
