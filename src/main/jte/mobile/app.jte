@@ -35,7 +35,7 @@
             @for(var filter: List.of("All", "Active", "Completed"))
                 <text verb="post" href="/todos/setFilter/${filter}?replace=true" target="body"
                       action="replace-inner"
-                      style="filter ordinary-text ${Utils.computeFilterClass(uiState.currentFilter(), filter)} ">${filter}</text>
+                      style="filter ordinary-text ${Utils.computeFilterClass(uiState.selectedFilter(), filter)} ">${filter}</text>
             @endfor
         </view>
 
