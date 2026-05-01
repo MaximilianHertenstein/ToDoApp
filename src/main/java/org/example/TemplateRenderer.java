@@ -4,6 +4,7 @@ import gg.jte.ContentType;
 import gg.jte.TemplateEngine;
 import gg.jte.output.StringOutput;
 import gg.jte.resolve.DirectoryCodeResolver;
+import gg.jte.resolve.ResourceCodeResolver;
 
 import java.nio.file.Path;
 
@@ -13,8 +14,11 @@ public class TemplateRenderer {
     TemplateEngine hxmlTemplateEngine;
 
     TemplateRenderer() {
-        DirectoryCodeResolver htmlCodeResolver = new DirectoryCodeResolver(Path.of("src/main/jte/web"));
-        DirectoryCodeResolver hxmlCodeResolver = new DirectoryCodeResolver(Path.of("src/main/jte/mobile"));
+
+//        ResourceCodeResolver htmlCodeResolver = new ResourceCodeResolver("web");
+//        ResourceCodeResolver hxmlCodeResolver = new ResourceCodeResolver("mobile");
+        DirectoryCodeResolver htmlCodeResolver = new DirectoryCodeResolver(Path.of("src/main/resources/jte/web"));
+        DirectoryCodeResolver hxmlCodeResolver = new DirectoryCodeResolver(Path.of("src/main/resources/jte/mobile"));
         htmlTemplateEngine = TemplateEngine.create(htmlCodeResolver, ContentType.Html);
         hxmlTemplateEngine = TemplateEngine.create(hxmlCodeResolver, ContentType.Plain);
     }
