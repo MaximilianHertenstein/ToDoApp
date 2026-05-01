@@ -15,10 +15,10 @@ public class TemplateRenderer {
 
     TemplateRenderer() {
 
-//        ResourceCodeResolver htmlCodeResolver = new ResourceCodeResolver("web");
-//        ResourceCodeResolver hxmlCodeResolver = new ResourceCodeResolver("mobile");
-        DirectoryCodeResolver htmlCodeResolver = new DirectoryCodeResolver(Path.of("src/main/resources/jte/web"));
-        DirectoryCodeResolver hxmlCodeResolver = new DirectoryCodeResolver(Path.of("src/main/resources/jte/mobile"));
+        ResourceCodeResolver htmlCodeResolver = new ResourceCodeResolver("jte/web");
+        ResourceCodeResolver hxmlCodeResolver = new ResourceCodeResolver("jte/mobile");
+//        DirectoryCodeResolver htmlCodeResolver = new DirectoryCodeResolver(Path.of("src/main/resources/jte/web"));
+//        DirectoryCodeResolver hxmlCodeResolver = new DirectoryCodeResolver(Path.of("src/main/resources/jte/mobile"));
         htmlTemplateEngine = TemplateEngine.create(htmlCodeResolver, ContentType.Html);
         hxmlTemplateEngine = TemplateEngine.create(hxmlCodeResolver, ContentType.Plain);
     }
