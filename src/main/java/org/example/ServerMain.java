@@ -1,14 +1,8 @@
-package org.example;
 
 import io.javalin.Javalin;
+import org.example.JavalinConfigurator;
 
-
-
-class ServerMain {
-
-
-
-    public static void main(String[] args) {
+ void main() {
 
 
         runApp();
@@ -28,7 +22,7 @@ class ServerMain {
         var app =  Javalin.create(JavalinConfigurator::configureJavalin);
         app.start(portInt);
     }
-}
+
 
 //private static void runWebApp(){
 //    var serverController = new ServerController();
