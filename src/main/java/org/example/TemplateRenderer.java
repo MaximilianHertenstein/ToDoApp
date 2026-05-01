@@ -1,5 +1,6 @@
 package org.example;
 
+import gg.jte.CodeResolver;
 import gg.jte.ContentType;
 import gg.jte.TemplateEngine;
 import gg.jte.output.StringOutput;
@@ -15,10 +16,15 @@ public class TemplateRenderer {
 
     TemplateRenderer() {
 
-        ResourceCodeResolver htmlCodeResolver = new ResourceCodeResolver("jte/web");
-        ResourceCodeResolver hxmlCodeResolver = new ResourceCodeResolver("jte/mobile");
-//        DirectoryCodeResolver htmlCodeResolver = new DirectoryCodeResolver(Path.of("src/main/resources/jte/web"));
-//        DirectoryCodeResolver hxmlCodeResolver = new DirectoryCodeResolver(Path.of("src/main/resources/jte/mobile"));
+        CodeResolver htmlCodeResolver = new DirectoryCodeResolver(Path.of("src/main/resources/jte/web"));
+        CodeResolver hxmlCodeResolver = new DirectoryCodeResolver(Path.of("src/main/resources/jte/mobile"));
+
+        boolean deploy = true;
+        if (deploy){
+             htmlCodeResolver = new ResourceCodeResolver("jte/web");
+             hxmlCodeResolver = new ResourceCodeResolver("jte/mobile");
+        }
+
         htmlTemplateEngine = TemplateEngine.create(htmlCodeResolver, ContentType.Html);
         hxmlTemplateEngine = TemplateEngine.create(hxmlCodeResolver, ContentType.Plain);
     }
