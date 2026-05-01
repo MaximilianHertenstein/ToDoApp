@@ -10,8 +10,7 @@ RUN mvn clean package -DskipTests
 FROM eclipse-temurin:25-jdk
 
 WORKDIR /app
-
-COPY --from=build /app/target/*SNAPSHOT.jar app.jar
+COPY --from=build /app/target/ToDoApp-1.0-SNAPSHOT-jar-with-dependencies.jar app.jar
 EXPOSE 8080
 
 CMD ["java", "-jar", "app.jar"]
