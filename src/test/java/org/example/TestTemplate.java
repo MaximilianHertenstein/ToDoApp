@@ -8,7 +8,7 @@ import gg.jte.resolve.DirectoryCodeResolver;
 import org.junit.jupiter.api.Test;
 import java.nio.file.Path;
 
-import static java.io.IO.println;
+import static java.lang.IO.println;
 import static org.junit.jupiter.api.Assertions.*;
 
 class SingleItemTemplateTest {
