@@ -9,6 +9,9 @@ public class ServerController {
 
 
     public void showApp(Context ctx) {
+
+
+
         view.showApp(ctx, model.getUIState());
     }
 

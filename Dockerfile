@@ -1,18 +1,18 @@
-FROM maven:3.9.11-amazoncorretto-24 AS build
-COPY --chown=maven:maven . /home/maven/src
-WORKDIR /home/maven/src
-RUN maven buildFatJar --no-daemon
+# ---- Build stage ----
+FROM maven:3.9.15-eclipse-temurin-25 AS build
 
+WORKDIR /app
+COPY . .
 
-FROM openjdk:24
+RUN mvn clean package -DskipTests
 
-RUN mkdir /app
+# ---- Runtime stage ----
+FROM eclipse-temurin:25-jdk
 
+WORKDIR /app
 
-EXPOSE 8080:8080
+COPY --from=build /app/target/*.jar app.jar
 
+EXPOSE 8080
 
-COPY --from=build /home/gradle/src/build/libs/*.jar   /app/ktor-mysql-backend.jar
-
-
-ENTRYPOINT ["java","-jar","/app/ktor-mysql-backend.jar"]
+CMD ["java", "-jar", "app.jar"]

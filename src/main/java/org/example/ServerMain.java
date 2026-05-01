@@ -23,9 +23,10 @@ class ServerMain {
 
     static void runApp() {
 
-
+        String port = System.getenv().getOrDefault("PORT", "8080");
+        int portInt = Integer.parseInt(port);
         var app =  Javalin.create(JavalinConfigurator::configureJavalin);
-        app.start();
+        app.start(portInt);
     }
 }
 
