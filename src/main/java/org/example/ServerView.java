@@ -9,7 +9,8 @@ public class ServerView {
      TemplateRenderer templateRenderer = new TemplateRenderer();
 
     private static boolean shouldRespondHXML(Context ctx) {
-        return ctx.header("Accept") != null && ctx.header("Accept").contains("hyperview");
+        String acceptHeader = ctx.header("Accept");
+        return acceptHeader != null && acceptHeader.contains("hyperview");
     }
 
 
